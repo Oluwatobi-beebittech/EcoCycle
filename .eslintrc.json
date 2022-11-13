@@ -1,3 +1,81 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": "next/core-web-vitals",
+  "plugins": [],
+  "rules": {
+    "arrow-spacing": "error",
+    "array-bracket-spacing": ["error", "always"],
+    "brace-style": "error",
+    "curly": ["error", "multi-line", "consistent"],
+    "no-unused-vars": "error",
+    "no-unused-expressions": ["error"],
+    "indent": ["error", "tab"],
+    "import/order": 
+    [
+      "error",
+      {
+        "groups": 
+        [
+          "builtin",
+          "external",
+          "internal",
+          "type",
+          ["parent", "sibling"],
+          "index", 
+          "object"
+        ],
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        },
+        "warnOnUnassignedImports": true
+      }
+    ],
+    "import/no-mutable-exports": "error",
+    "import/no-duplicates": "error",
+    "max-lines": [
+      "error", 
+      {
+        "max": 150,
+        "skipComments": true
+      }
+    ],
+    "max-len": [
+      "error", 
+      { 
+        "code": 120, 
+        "comments": 65, 
+        "ignoreUrls": true , 
+        "ignoreStrings": true, 
+        "ignoreTemplateLiterals": true  
+      }
+    ],
+    "no-duplicate-imports": "error",
+    "no-extra-parens": "error",
+    "no-shadow": "error",
+    "no-nested-ternary": "error",
+    "no-use-before-define": "error",
+    "no-redeclare": "error",
+    "no-var": "error",
+    "no-trailing-spaces": "error",
+    "object-curly-spacing": ["error", "always"],
+    "padding-line-between-statements": [
+      "error",
+      {
+        "blankLine": "always",
+        "prev": ["const", "let"],
+        "next": "return"
+      },
+      {
+        "blankLine": "always",
+        "prev": ["function", "if", "try"],
+        "next": "*"
+      }
+    ],
+    "prefer-arrow-callback": "error",
+    "prefer-const": "error",
+    "quotes": ["error", "single",  { "allowTemplateLiterals": true }],
+    "semi": ["error", "always"],
+    "space-before-blocks": ["error", "always"]
+  }
 }

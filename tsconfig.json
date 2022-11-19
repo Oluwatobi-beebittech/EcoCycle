@@ -15,15 +15,15 @@
     "jsx": "preserve",
     "incremental": true,
     "baseUrl": ".",
-        "paths": {
-            "@API": ["api/"],
-            "@Components": ["components/"],
-            "@Pages": ["pages/"],
-            "@Providers": ["providers/"],
-            "@Utilities": ["utilities/"],
-            "@Store": ["store/"],
-            "@Styles": ["styles/"],
-        }
+    "paths": {
+        "@API": ["api/"],
+        "@Components": ["components/"],
+        "@Pages": ["pages/"],
+        "@Providers": ["providers/"],
+        "@Utilities": ["utilities/"],
+        "@Store": ["store/"],
+        "@Styles": ["styles/"],
+    }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]

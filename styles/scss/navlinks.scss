@@ -1,0 +1,19 @@
+$navLinkMargin: 3.3125rem;
+
+.nav-links {
+    &__link{
+        &:not(:first-child):not(:last-child){
+            margin-left: $navLinkMargin;
+            margin-right: $navLinkMargin;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--black-900);
+            
+            &:hover {
+                color: var(--green-500);
+            }
+        }
+    }
+}

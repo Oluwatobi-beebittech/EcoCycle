@@ -1,50 +1,32 @@
+import { ArrowForward } from '@mui/icons-material';
 import { Typography } from '@mui/material';
 import Box  from '@mui/material/Box';
+import Link from 'next/link';
 import * as React from 'react';
 
-import { ColourPalette } from '@Styles';
-
-const { primary } = ColourPalette;
+import { Button } from '@Components';
 
 type Props = {
     description: string;
-    icon: React.ReactElement;
-    title: string;
+    link: string;
 }
-export const DescriptionItem: React.FC<Props> = ({ icon, title, description }): JSX.Element => {
+export const DescriptionItem: React.FC<Props> = ({ link, description }): JSX.Element => {
 	return <Box sx ={
 		{
+			marginTop: '5rem',
+			marginLeft: '2rem',
 			display: 'flex',
-			flexDirection: 'column',
-			height: '18.125rem',
-			justifyContent: 'space-evenly',
+			flexDirection:'column',
+			gap: 'var(--gap)'
 		}
 	}>
-		<Box sx={
-			{
-				backgroundColor: primary.light,
-				borderRadius: 'var(--border-radius)',
-				padding: '2.6875rem',
-				width: '8.125rem',
-				height: '8.125rem',
-				alignItems:'center',
-				justifyItems: 'center',
-				display: 'grid'
-			}
-		}>
-			{icon}
-		</Box>
-		<Typography
-			variant='h2'
-			align='center'
-		>
-			{title}
-		</Typography>
 		<Typography
 			variant='body1'
-			align='center'
 		>
 			{description}
 		</Typography>
+		<Link href={link}>
+			<Button variant="outlined" size="small" endIcon={<ArrowForward/>}>Learn More</Button>
+		</Link>
 	</Box>;
 };

@@ -34,12 +34,12 @@ export const PublicNavigationBar: React.FC = (): JSX.Element => {
 					</Typography>
 					<Toolbar sx={{ width:'100%', justifyContent: 'flex-end', }} className='nav-links'>
 						<MuiLink className="nav-links__link" component='button'>
-							<Link href="/">How it works</Link>
+							<Link href="/#how-it-works">How it works</Link>
 						</MuiLink>
 						<MuiLink className="nav-links__link">
-							<Link href="/">Login</Link>
+							<Link href="/login">Login</Link>
 						</MuiLink>
-						<Link href="/">
+						<Link href="/signup">
 							<Button className="nav-links__link" variant="contained" size="small">SignUp</Button>
 						</Link>
 					</Toolbar>

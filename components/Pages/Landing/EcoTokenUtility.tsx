@@ -7,7 +7,7 @@ import * as React from 'react';
 
 import { ColourPalette } from '@Styles';
 
-import { EcoTokenUtilityTabPanel } from './EcoTokenUtilityTabPanel';
+import { EcoTokenUtilityTabContent , EcoTokenUtilityTabPanel } from './EcoTokenUtilityTabPanel';
 
 
 const { gray } = ColourPalette;
@@ -44,18 +44,17 @@ export const EcoTokenUtility: React.FC = (): JSX.Element => {
 				<Tab icon={<ConfirmationNumber />} iconPosition="start" label="EcoTaxCredit" />
 				<Tab icon={<Redeem />} iconPosition="start" label="EcoRedeem" />
 			</Tabs>
-			<EcoTokenUtilityTabPanel
-				currentTabPanelIndex={currentTabIndex}
-				index={0}
-			/>
-			<EcoTokenUtilityTabPanel
-				currentTabPanelIndex={currentTabIndex}
-				index={1}
-			/>
-			<EcoTokenUtilityTabPanel
-				currentTabPanelIndex={currentTabIndex}
-				index={2}
-			/>
+			{EcoTokenUtilityTabContent.map((content, index) => {
+				const { link, description, id } = content;
+
+				return <EcoTokenUtilityTabPanel
+					currentTabPanelIndex={currentTabIndex}
+					link={link}
+					description={description}
+					key={id}
+					index={index}
+				/>;
+			})}
 		</Box>
 	</Box>;
 };

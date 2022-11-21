@@ -14,18 +14,20 @@ export const Typography: Partial<MuiTypography> =  {
 		fontSize: '1.618125rem',
 		fontWeight: 400,
 	},
-	body1: {
-		fontFamily: Raleway,
-		fontWeight: 400,
-	},
-	button: {
-		fontFamily: Raleway,
-	},
 	h3: {
 		fontFamily: Raleway,
 		fontSize: '1.618125rem',
 		fontWeight: 700,
 	},
+	body1: {
+		fontFamily: Raleway,
+		fontSize: '1rem',
+		fontWeight: 400,
+	},
+	button: {
+		fontFamily: Raleway,
+	},
+
 	// h4: undefined,
 	// h5: undefined,
 	// h6: undefined,

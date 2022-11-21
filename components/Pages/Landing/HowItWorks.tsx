@@ -6,11 +6,14 @@ import * as React from 'react';
 
 import { ColourPalette } from '@Styles';
 
-import { TabPanel } from './TabPanel';
+import { HowitWorksTabContent , HowitWorksTabPanel } from './HowitWorksTabPanel';
+
 
 const { gray } = ColourPalette;
 
 export const HowItWorks: React.FC = (): JSX.Element => {
+	const [ currentTabIndex, setCurrentTabIndex ] = React.useState<number>(0);
+
 	return <Box
 		id="how-it-works"
 		sx={
@@ -31,11 +34,12 @@ export const HowItWorks: React.FC = (): JSX.Element => {
 		>
 				How it Works
 		</Typography>
-		<Tabs value="Item One" onChange={(e, newj) => console.log(e, newj)} centered>
+		<Tabs value={currentTabIndex} onChange={(e, tabIndex) => setCurrentTabIndex(tabIndex)} centered>
 			<Tab label="For Collectors" />
 			<Tab label="For Processors" />
 		</Tabs>
-		<TabPanel />
+		<HowitWorksTabPanel currentTabPanelIndex={currentTabIndex} index={0} tabContent={HowitWorksTabContent[0]}/>
+		<HowitWorksTabPanel currentTabPanelIndex={currentTabIndex} index={1} tabContent={HowitWorksTabContent[1]}/>
 
 	</Box>;
 };

@@ -65,7 +65,7 @@ export const SignUp: React.FC = (): JSX.Element => {
 					<FormLabel id="demo-radio-buttons-group-label">Which category of EcoChampions best describe you? <Tooltip title="Specifies the type of activity you want to perform in the accoun."><Info fontSize='small'/></Tooltip></FormLabel>
 					<RadioGroup
 						aria-labelledby="demo-radio-buttons-group-label"
-						defaultValue="female"
+						defaultValue={EcoChampion.ECO_COLLECTOR}
 						name="radio-buttons-group"
 					>
 						<FormControlLabel value={EcoChampion.ECO_COLLECTOR} control={<Radio />} label="Collector" />

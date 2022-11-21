@@ -6,6 +6,7 @@ import { MuiAppBar } from './AppBar';
 import { MuiButton } from './Button';
 import { MuiIcon } from './Icon';
 import { MuiLink } from './Link';
+import { MuiTab } from './Tab';
 import { MuiToolbar } from './Toolbar';
 
 export const components: Components<Omit<MuiTheme, 'components'>> | undefined = {
@@ -13,5 +14,6 @@ export const components: Components<Omit<MuiTheme, 'components'>> | undefined = 
 	MuiButton,
 	MuiIcon,
 	MuiLink,
+	MuiTab,
 	MuiToolbar
 };

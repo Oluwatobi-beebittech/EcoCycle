@@ -4,9 +4,7 @@ import { Login as AppLogin, PublicLayout } from '@Components';
 
 export default function Login() {
 	return (
-		<>
-			<AppLogin/>
-		</>
+		<AppLogin/>
 	);
 }
 

@@ -4,9 +4,7 @@ import { PublicLayout, SignUp as AppSignUp } from '@Components';
 
 export default function SignUp() {
 	return (
-		<>
-			<AppSignUp/>
-		</>
+		<AppSignUp/>
 	);
 }
 

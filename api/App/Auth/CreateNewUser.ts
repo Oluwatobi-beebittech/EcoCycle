@@ -1,15 +1,6 @@
 import { API } from '@API';
-import { EcoChampion } from '@Utilities';
+import { CreateUserDto } from '@Dto';
 import { getAPIBaseURL } from 'Environment';
-
-export type CreateUserDto = {
-    firstName: string;
-    lastName: string;
-    email: string;
-    phoneNumber: string;
-    password: string;
-    ecoChampion: EcoChampion;
-};
 
 export const CreateNewUser = async (userDetails: CreateUserDto) => {
 	const route = '/users';

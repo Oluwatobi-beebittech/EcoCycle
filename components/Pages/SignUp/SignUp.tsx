@@ -6,18 +6,12 @@ import { useForm } from 'react-hook-form';
 
 import { API } from '@API';
 import { FormStatusAlert } from '@Components';
+import { CreateUserDto } from '@Dto';
 import { useFormSubmit } from '@Hooks';
 import { EcoChampion } from '@Utilities';
 
-
-type SignUpInputs = {
-	firstName: string;
-    lastName: string;
-    email: string;
-    phoneNumber: string;
-    password: string;
+type SignUpInputs = CreateUserDto & {
   	confirmPassword: string;
-	ecoChampion: EcoChampion;
 };
 
 export const SignUp: React.FC = (): JSX.Element => {

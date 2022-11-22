@@ -6,13 +6,11 @@ import { useForm } from 'react-hook-form';
 
 import { API } from '@API';
 import { FormStatusAlert } from '@Components';
+import { LoginUserDto } from '@Dto';
 import { useFormSubmit } from '@Hooks';
 import { setAccessToken } from '@Utilities';
 
-type LoginInputs = {
-  email: string;
-  password: string;
-};
+type LoginInputs = LoginUserDto;
 
 export const Login: React.FC = (): JSX.Element => {
 	const { register, handleSubmit, formState: { errors } } = useForm<LoginInputs>();

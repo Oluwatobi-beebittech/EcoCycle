@@ -18,6 +18,7 @@
     "paths": {
         "@API": ["api/"],
         "@Components": ["components/"],
+        "@Dto": ["dto/"],
         "@Pages": ["pages/"],
         "@Providers": ["providers/"],
         "@Utilities": ["utilities/"],

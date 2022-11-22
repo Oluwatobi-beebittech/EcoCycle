@@ -1,14 +1,6 @@
 import { API } from '@API';
+import { LoginUserDto, LoginResponseDto } from '@Dto';
 import { getAPIBaseURL } from 'Environment';
-
-export type LoginUserDto = {
-    email: string;
-    password: string;
-};
-
-type LoginResponseDto = {
-    access_token: string;
-}
 
 export const LoginUser = async (userDetails: LoginUserDto) => {
 	const route = '/auth/login';

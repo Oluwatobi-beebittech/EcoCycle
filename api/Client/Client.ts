@@ -3,28 +3,25 @@ import { axios, AxiosRequestConfig } from './HTTPInstance';
 
 export const getAbortController = () => new AbortController();
 
-export const sendRequest = <T>(requestConfig: AxiosRequestConfig<T>): Promise<T> => {
+export const sendRequest = <T, K>(requestConfig: AxiosRequestConfig<T>): Promise<K> => {
 	return axios
 		.request(requestConfig)
 		.then(response => Promise.resolve(response.data))
 		.catch(err => Promise.reject(
 			{
-				config: err?.config,
 				data: err?.response?.data,
-				headers: err?.response?.headers,
-				request: err?.request,
 				status: err?.response?.status,
 				statusText: err?.response?.statusText,
 			}));
 };
 
-export const getRequest = <T>(
+export const getRequest = <T, K>(
 	baseURL: string,
 	route: string,
 	params: object | undefined = {},
 	optionalConfig: object | undefined={}
 ) => {
-	return sendRequest<T>({
+	return sendRequest<T, K>({
 		params,
 		url: buildURL(baseURL, route),
 		method: 'GET',
@@ -32,13 +29,13 @@ export const getRequest = <T>(
 	});
 };
 
-export const postRequest = <T>(
+export const postRequest = <T, K>(
 	baseURL: string,
 	route: string,
 	body: T,
 	optionalConfig: object | undefined={}
 ) => {
-	return sendRequest<T>({
+	return sendRequest<T, K>({
 		url: buildURL(baseURL, route),
 		method: 'POST',
 		data: body,
@@ -46,13 +43,13 @@ export const postRequest = <T>(
 	});
 };
 
-export const putRequest = <T>(
+export const putRequest = <T, K>(
 	baseURL: string,
 	route: string,
 	body: T,
 	optionalConfig: object | undefined={}
 ) => {
-	return sendRequest<T>({
+	return sendRequest<T, K>({
 		url: buildURL(baseURL, route),
 		method: 'PUT',
 		data: body,
@@ -60,13 +57,13 @@ export const putRequest = <T>(
 	});
 };
 
-export const deleteRequest = <T>(
+export const deleteRequest = <T, K>(
 	baseURL: string,
 	route: string,
 	params: object | undefined={},
 	optionalConfig: object | undefined={}
 ) => {
-	return sendRequest<T>({
+	return sendRequest<T, K>({
 		params,
 		url: buildURL(baseURL, route),
 		method: 'DELETE',
@@ -74,13 +71,13 @@ export const deleteRequest = <T>(
 	});
 };
 
-export const patchRequest = <T>(
+export const patchRequest = <T, K>(
 	baseURL: string,
 	route: string,
 	body: T,
 	optionalConfig: object | undefined={}
 ) => {
-	return sendRequest<T>({
+	return sendRequest<T, K>({
 		url: buildURL(baseURL, route),
 		method: 'PATCH',
 		data: body,

@@ -13,10 +13,6 @@ export type CreateUserDto = {
 
 export const CreateNewUser = async (userDetails: CreateUserDto) => {
 	const route = '/users';
-	console.log({
-		gg: getAPIBaseURL(),
-		rr: route,
-		userDetails
-	});
+
 	return await API.POST(getAPIBaseURL(), route, userDetails);
 };

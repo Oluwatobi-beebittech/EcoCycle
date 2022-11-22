@@ -6,7 +6,7 @@
     "array-bracket-spacing": ["error", "always"],
     "brace-style": "error",
     "curly": ["error", "multi-line", "consistent"],
-    "no-unused-vars": "error",
+    "no-unused-vars": "warn",
     "no-unused-expressions": ["error"],
     "indent": ["error", "tab"],
     "import/order": 
@@ -36,7 +36,7 @@
     "max-lines": [
       "error", 
       {
-        "max": 150,
+        "max": 250,
         "skipComments": true
       }
     ],

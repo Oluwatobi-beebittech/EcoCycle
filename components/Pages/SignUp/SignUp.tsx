@@ -1,10 +1,14 @@
 import { ArrowForward, Info } from '@mui/icons-material';
-import { Box, Button, Typography, FormControl,FormLabel,FormControlLabel, Radio, RadioGroup, TextField, Tooltip } from '@mui/material';
+import { LoadingButton } from '@mui/lab';
+import { Box, Typography, FormControl,FormLabel,FormControlLabel, Radio, RadioGroup, TextField, Tooltip } from '@mui/material';
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
 
 import { API } from '@API';
+import { FormStatusAlert } from '@Components';
+import { useFormSubmit } from '@Hooks';
 import { EcoChampion } from '@Utilities';
+
 
 type SignUpInputs = {
 	firstName: string;
@@ -18,6 +22,7 @@ type SignUpInputs = {
 
 export const SignUp: React.FC = (): JSX.Element => {
 	const { register, handleSubmit, formState: { errors } } = useForm<SignUpInputs>();
+	const { isLoading, hasSuccess, successMessage, hasError, errorMessage, update } = useFormSubmit();
 
 	return <Box sx={
 		{ width: '100%',
@@ -75,7 +80,7 @@ export const SignUp: React.FC = (): JSX.Element => {
 					required
 					id="outlined-name"
 					label="Phone number"
-					type='tel'
+					type="tel"
 					aria-required="true"
 					error={Boolean(errors?.phoneNumber)}
 					aria-invalid={Boolean(errors?.phoneNumber)}
@@ -116,21 +121,44 @@ export const SignUp: React.FC = (): JSX.Element => {
 						<FormControlLabel value={EcoChampion.ECO_PROCESSOR} control={<Radio />} label="Processor" />
 					</RadioGroup>
 				</>
-				<Button
+				<LoadingButton
+					loading={isLoading}
+					loadingPosition="end"
+					disabled={isLoading}
 					endIcon={<ArrowForward/>}
 					variant='contained'
 					size="large"
 					sx={{ width: 'content', marginX: 'auto' }}
-					onClick={handleSubmit(async (e) => {
-					// eslint-disable-next-line no-unused-vars
-						const { confirmPassword, ...data } = e;
+					onClick={handleSubmit(async (formData) => {
+						update({ isLoading: true });
+						//eslint-disable-next-line no-unused-vars
+						const { confirmPassword, ...data } = formData;
+						let newuserInfo;
+						try{
+							newuserInfo = await API.CreateNewUser(data);
+						}catch(error: any) {
+							update({
+								isLoading: false,
+								hasError: true,
+								errorMessage: `${error?.status}: ${error?.statusText} ${error?.data?.message?.[0]}` ?? 'Error encountered while saving your details. Kindly try again.'
+							});
+							return;
+						}
 
-						return await API.CreateNewUser(data);
+						update({ isLoading: false, hasError: false, hasSuccess: true, successMessage: 'Registration successful' });
+						return newuserInfo;
 					})}
 				>
                     Signup
-				</Button>
+				</LoadingButton>
 			</FormControl>
 		</Box>
+		<FormStatusAlert
+			hasError={hasError}
+			hasSuccess={hasSuccess}
+			successMessage={successMessage}
+			errorMessage={errorMessage}
+			update={update}
+		/>
 	</Box>;
 };

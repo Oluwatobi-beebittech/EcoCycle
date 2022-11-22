@@ -6,8 +6,12 @@ export type LoginUserDto = {
     password: string;
 };
 
+type LoginResponseDto = {
+    access_token: string;
+}
+
 export const LoginUser = async (userDetails: LoginUserDto) => {
 	const route = '/auth/login';
 
-	return await API.POST(getAPIBaseURL(), route, userDetails);
+	return await API.POST<LoginUserDto, LoginResponseDto>(getAPIBaseURL(), route, userDetails);
 };

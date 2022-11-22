@@ -23,6 +23,7 @@
         "@Utilities": ["utilities/"],
         "@Store": ["store/"],
         "@Styles": ["styles/"],
+        "@Hooks": ["hooks/"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

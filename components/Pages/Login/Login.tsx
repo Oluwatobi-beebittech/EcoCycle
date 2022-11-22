@@ -1,9 +1,13 @@
 import { ArrowForward } from '@mui/icons-material';
-import { Box, Button, Typography, FormControl, TextField } from '@mui/material';
+import { LoadingButton } from '@mui/lab';
+import { Box, Typography, FormControl, TextField } from '@mui/material';
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
 
 import { API } from '@API';
+import { FormStatusAlert } from '@Components';
+import { useFormSubmit } from '@Hooks';
+import { setAccessToken } from '@Utilities';
 
 type LoginInputs = {
   email: string;
@@ -12,6 +16,7 @@ type LoginInputs = {
 
 export const Login: React.FC = (): JSX.Element => {
 	const { register, handleSubmit, formState: { errors } } = useForm<LoginInputs>();
+	const { isLoading, hasSuccess, successMessage, hasError, errorMessage, update } = useFormSubmit();
 
 	return <Box sx={
 		{ width: '100%',
@@ -52,19 +57,42 @@ export const Login: React.FC = (): JSX.Element => {
 					helperText={errors?.password?.message}
 					{...register('password', { required: 'Password is required' })}
 				/>
-				<Button
+				<LoadingButton
+					loading={isLoading}
+					loadingPosition="end"
+					disabled={isLoading}
 					endIcon={<ArrowForward/>}
 					variant='contained'
 					size="large"
 					sx={{ width: 'content', marginX: 'auto' }}
-					onClick={handleSubmit(async (e) => {
+					onClick={handleSubmit(async (formData) => {
+						let loginDetails;
+						try{
+							loginDetails = await API.LoginUser(formData);
+						}catch(error: any) {
+							update({
+								isLoading: false,
+								hasError: true,
+								errorMessage: `${error?.status}: ${error?.statusText} ${error?.data?.message?.[0]}` ?? 'Unable to login. Check the email and password again'
+							});
+							return;
+						}
 
-						return await API.LoginUser(e);
+						update({ isLoading: false, hasError: false, hasSuccess: true, successMessage: 'Login successful' });
+						setAccessToken(loginDetails.access_token);
+						return loginDetails;
 					})}
 				>
                     Login
-				</Button>
+				</LoadingButton>
 			</FormControl>
 		</Box>
+		<FormStatusAlert
+			hasError={hasError}
+			hasSuccess={hasSuccess}
+			successMessage={successMessage}
+			errorMessage={errorMessage}
+			update={update}
+		/>
 	</Box>;
 };

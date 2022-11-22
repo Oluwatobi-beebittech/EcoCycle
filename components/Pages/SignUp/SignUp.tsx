@@ -1,10 +1,24 @@
 import { ArrowForward, Info } from '@mui/icons-material';
 import { Box, Button, Typography, FormControl,FormLabel,FormControlLabel, Radio, RadioGroup, TextField, Tooltip } from '@mui/material';
 import * as React from 'react';
+import { useForm } from 'react-hook-form';
 
+import { API } from '@API';
 import { EcoChampion } from '@Utilities';
 
+type SignUpInputs = {
+	firstName: string;
+    lastName: string;
+    email: string;
+    phoneNumber: string;
+    password: string;
+  	confirmPassword: string;
+	ecoChampion: EcoChampion;
+};
+
 export const SignUp: React.FC = (): JSX.Element => {
+	const { register, handleSubmit, formState: { errors } } = useForm<SignUpInputs>();
+
 	return <Box sx={
 		{ width: '100%',
 			marginTop: '5rem',
@@ -25,40 +39,70 @@ export const SignUp: React.FC = (): JSX.Element => {
 			<Typography variant='h1' sx={{ lineHeight: '4rem', textAlign: 'center', }}>SignUp</Typography>
 			<FormControl sx={{ width: '50%', marginX: 'auto', gap: '2rem' }}>
 				<TextField
+					required
 					id="outlined-name"
 					label="Firstname"
 					type='text'
-					helperText="Hello"
+					aria-required="true"
+					error={Boolean(errors?.firstName)}
+					aria-invalid={Boolean(errors?.firstName)}
+					helperText={errors?.firstName?.message}
+					{...register('firstName', { required: 'First name is required' })}
 				/>
 				<TextField
+					required
 					id="outlined-name"
 					label="Lastname"
 					type='text'
-					helperText="Hello"
+					aria-required="true"
+					error={Boolean(errors?.lastName)}
+					aria-invalid={Boolean(errors?.lastName)}
+					helperText={errors?.lastName?.message}
+					{...register('lastName', { required: 'Last name is required' })}
 				/>
 				<TextField
+					required
 					id="outlined-name"
 					label="Email"
 					type='email'
-					helperText="Hello"
+					aria-required="true"
+					error={Boolean(errors?.email)}
+					aria-invalid={Boolean(errors?.email)}
+					helperText={errors?.email?.message}
+					{...register('email', { required: 'Email is required' })}
 				/>
 				<TextField
+					required
 					id="outlined-name"
 					label="Phone number"
 					type='tel'
-					helperText="Hello"
+					aria-required="true"
+					error={Boolean(errors?.phoneNumber)}
+					aria-invalid={Boolean(errors?.phoneNumber)}
+					helperText={errors?.phoneNumber?.message}
+					{...register('phoneNumber', { required: 'Phone number is required' })}
 				/>
 				<TextField
+					required
 					id="outlined-name"
 					label="Password"
-					helperText="Hello"
+					aria-required="true"
+					error={Boolean(errors?.password)}
+					aria-invalid={Boolean(errors?.password)}
+					helperText={errors?.password?.message}
 					type='password'
+					{...register('password', { required: 'Password is required' })}
 				/>
 				<TextField
+					required
 					id="outlined-name"
 					label="Confirm password"
-					helperText="Hello"
+					aria-required="true"
+					error={Boolean(errors?.confirmPassword)}
+					aria-invalid={Boolean(errors?.confirmPassword)}
+					helperText={errors?.confirmPassword?.message}
 					type='password'
+					{...register('confirmPassword', { required: 'Confirm password is required' })}
 				/>
 
 				<>
@@ -66,7 +110,7 @@ export const SignUp: React.FC = (): JSX.Element => {
 					<RadioGroup
 						aria-labelledby="demo-radio-buttons-group-label"
 						defaultValue={EcoChampion.ECO_COLLECTOR}
-						name="radio-buttons-group"
+						{...register('ecoChampion', { required: 'Ecochampion group is required' })}
 					>
 						<FormControlLabel value={EcoChampion.ECO_COLLECTOR} control={<Radio />} label="Collector" />
 						<FormControlLabel value={EcoChampion.ECO_PROCESSOR} control={<Radio />} label="Processor" />
@@ -77,6 +121,12 @@ export const SignUp: React.FC = (): JSX.Element => {
 					variant='contained'
 					size="large"
 					sx={{ width: 'content', marginX: 'auto' }}
+					onClick={handleSubmit(async (e) => {
+					// eslint-disable-next-line no-unused-vars
+						const { confirmPassword, ...data } = e;
+
+						return await API.CreateNewUser(data);
+					})}
 				>
                     Signup
 				</Button>

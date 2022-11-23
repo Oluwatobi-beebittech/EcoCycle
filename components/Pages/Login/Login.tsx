@@ -1,6 +1,7 @@
 import { ArrowForward } from '@mui/icons-material';
 import { LoadingButton } from '@mui/lab';
 import { Box, Typography, FormControl, TextField } from '@mui/material';
+import { useRouter } from 'next/router';
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -9,12 +10,12 @@ import { FormStatusAlert } from '@Components';
 import { LoginUserDto } from '@Dto';
 import { useFormSubmit } from '@Hooks';
 import { setAccessToken } from '@Utilities';
-
 type LoginInputs = LoginUserDto;
 
 export const Login: React.FC = (): JSX.Element => {
 	const { register, handleSubmit, formState: { errors } } = useForm<LoginInputs>();
 	const { isLoading, hasSuccess, successMessage, hasError, errorMessage, update } = useFormSubmit();
+	const router = useRouter();
 
 	return <Box sx={
 		{ width: '100%',
@@ -78,6 +79,7 @@ export const Login: React.FC = (): JSX.Element => {
 
 						update({ isLoading: false, hasError: false, hasSuccess: true, successMessage: 'Login successful' });
 						setAccessToken(loginDetails.access_token);
+						router.push('/dashboard');
 						return loginDetails;
 					})}
 				>

@@ -11,6 +11,7 @@ export const ColourPalette = {
 	gray: {
 		light: gray[100],
 		dark: gray[900],
-		in_between: gray[200]
+		in_between: gray[200],
+		text: gray[300]
 	}
 };

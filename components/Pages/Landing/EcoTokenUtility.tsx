@@ -38,7 +38,6 @@ export const EcoTokenUtility: React.FC = (): JSX.Element => {
 		<Box sx={{ display: 'flex', height: 224 }} >
 			<Tabs
 				orientation='vertical'
-				variant='scrollable'
 				value={currentTabIndex} onChange={(e, tabIndex) => setCurrentTabIndex(tabIndex)} centered>
 				<Tab icon={<ShoppingCartCheckout />} iconPosition="start" label="EcoDiscount" />
 				<Tab icon={<ConfirmationNumber />} iconPosition="start" label="EcoTaxCredit" />

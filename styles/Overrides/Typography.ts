@@ -1,8 +1,11 @@
 import type { Typography as MuiTypography } from '@mui/material/styles/createTypography';
 
+import { ColourPalette } from './Colour';
+
 export const Merriweather: string = 'Merriweather, serif';
 export const Raleway: string = 'Raleway, sans-serif';
 
+const { gray } = ColourPalette;
 export const Typography: Partial<MuiTypography> =  {
 	h1: {
 		fontFamily: Merriweather,
@@ -23,6 +26,17 @@ export const Typography: Partial<MuiTypography> =  {
 		fontFamily: Raleway,
 		fontSize: '1rem',
 		fontWeight: 400,
+	},
+	subtitle1: {
+		fontFamily: Raleway,
+		fontSize: '1.25rem',
+		fontWeight: 'bold',
+	},
+	caption: {
+		fontFamily: Raleway,
+		fontSize: '0.75rem',
+		fontWeight: 600,
+		color: gray.text
 	},
 	button: {
 		fontFamily: Raleway,

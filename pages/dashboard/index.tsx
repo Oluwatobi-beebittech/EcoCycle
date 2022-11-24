@@ -1,10 +1,13 @@
 import * as React from 'react';
 
-import { Login as AppLogin, InternalLayout } from '@Components';
+import { Login as AppLogin, InternalLayout, BalanceCard, CoinsOrganisedList } from '@Components';
 
 export default function Dashboard() {
 	return (
-		<AppLogin/>
+		<>
+			<CoinsOrganisedList/>
+			<BalanceCard />
+		</>
 	);
 }
 

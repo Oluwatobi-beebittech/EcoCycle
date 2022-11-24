@@ -11,6 +11,7 @@ export const ColourScheme: Colours = {
 	gray: {
 		100: '#ffffff',
 		200: '#F5F5F5',
+		300: '#AAAAAA',
 		800: '#303030',
 		900: '#02293E',
 	}

@@ -6,7 +6,7 @@ import * as React from 'react';
 import { useForm } from 'react-hook-form';
 
 import { API } from '@API';
-import { FormStatusAlert } from '@Components';
+import { FormStatusAlert, PasswordInput } from '@Components';
 import { LoginUserDto } from '@Dto';
 import { useFormSubmit } from '@Hooks';
 import { setAccessToken } from '@Utilities';
@@ -46,10 +46,9 @@ export const Login: React.FC = (): JSX.Element => {
 					helperText={errors?.email?.message}
 					{...register('email', { required: 'Email is required' })}
 				/>
-				<TextField
+				<PasswordInput
 					id="outlined-name"
 					label="Password"
-					type='password'
 					aria-required="true"
 					error={Boolean(errors?.password)}
 					aria-invalid={Boolean(errors?.password)}
@@ -72,7 +71,7 @@ export const Login: React.FC = (): JSX.Element => {
 							update({
 								isLoading: false,
 								hasError: true,
-								errorMessage: `${error?.status}: ${error?.statusText} ${error?.data?.message?.[0]}` ?? 'Unable to login. Check the email and password again'
+								errorMessage: error?.status ? `${error?.status}: ${error?.statusText} ${error?.data?.message?.[0]}` : 'Unable to login. Check the email and password again'
 							});
 							return;
 						}

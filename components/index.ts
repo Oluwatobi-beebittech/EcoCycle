@@ -9,3 +9,5 @@ export * from './Modal';
 export * from './WalletConnectionButton';
 export * from './OrganisedList';
 export * from './Table';
+export * from './Select';
+export * from './PasswordInput';

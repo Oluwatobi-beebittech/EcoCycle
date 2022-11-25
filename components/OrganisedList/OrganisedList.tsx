@@ -1,5 +1,3 @@
-import BeachAccessIcon from '@mui/icons-material/BeachAccess';
-import WorkIcon from '@mui/icons-material/Work';
 import { Avatar, List,ListItem, ListItemAvatar, ListItemText, ListSubheader } from '@mui/material';
 import NextImage, { StaticImageData } from 'next/image';
 import * as React from 'react';

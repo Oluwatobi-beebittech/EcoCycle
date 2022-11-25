@@ -1,7 +1,4 @@
-import { Typography } from '@mui/material';
-import Box  from '@mui/material/Box';
-import Tab from '@mui/material/Tab';
-import Tabs from '@mui/material/Tabs';
+import { Box, Tab, Tabs, Typography } from '@mui/material';
 import * as React from 'react';
 
 import { ColourPalette } from '@Styles';

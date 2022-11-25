@@ -1,4 +1,4 @@
-import { Box, Toolbar, Typography } from '@mui/material';
+import { Box, Toolbar } from '@mui/material';
 import * as React from 'react';
 
 import { InternalTopNavigationBar, InternalSideBarNavigation, WalletConnectBanner } from '@Components';

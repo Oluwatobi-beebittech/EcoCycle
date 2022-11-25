@@ -1,65 +1,59 @@
-import {  Schedule, CreditScore } from '@mui/icons-material';
-import { LoadingButton } from '@mui/lab';
-import { Box, FormControl, FormHelperText, InputAdornment, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material';
+import {  CreditScore } from '@mui/icons-material';
+import { Box, FormControl, FormHelperText, TextField, Typography } from '@mui/material';
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
 
-import { API } from '@API';
-import { DateTimePicker,FormStatusAlert } from '@Components';
-import { CreateUserDto } from '@Dto';
+import { FormStatusAlert, MenuItems, Select, LoadingButton } from '@Components';
+import { EcoPayDto } from '@Dto';
 import { useFormSubmit } from '@Hooks';
+import { Coins } from '@Utilities';
 
-type SignUpInputs = CreateUserDto & {
-    confirmPassword: string;
-};
+type EcoPayInputs = EcoPayDto;
 
 export const EcoPay: React.FC = (): JSX.Element => {
-	const { register, handleSubmit, formState: { errors } } = useForm<SignUpInputs>();
+	const { register, handleSubmit, formState: { errors } } = useForm<EcoPayInputs>();
 	const { isLoading, hasSuccess, successMessage, hasError, errorMessage, update } = useFormSubmit();
-
+	const paymentTypes: MenuItems = [
+		{ name: 'None', value:'' },
+		{ name: 'Waste recycling', value:'waste_recycling' },
+		{ name: 'EcoCredit', value:'ecocredit' },
+		{ name: 'EcoProduct', value:'ecoproduct' },
+	];
+	const coins: MenuItems = [
+		{ name: 'None', value: '' },
+		{ name: Coins.ECO, value: Coins.ECO },
+		{ name: Coins.USDT, value: Coins.USDT },
+		{ name: Coins.BUSD, value: Coins.BUSD },
+		{ name: Coins.USDC, value: Coins.USDC },
+		{ name: Coins.DAI, value: Coins.DAI },
+	];
 
 	return (
 		<Box sx={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-			<Typography variant='h3'>Schedule Pickup</Typography>
+			<Typography variant='h3'>EcoPay</Typography>
 			<Box sx={{ display: 'flex', flexDirection: 'column', gap: '1rem', justifyContent: 'center' }}>
 				<FormControl sx={{ width: '50%', marginX: 'auto', gap: '2rem' }}>
-					<FormControl error required>
-						<InputLabel id="demo-simple-select-error-label">Payment Type</InputLabel>
+					<FormControl error={Boolean(errors?.paymentType)} required>
 						<Select
-							labelId="demo-simple-select-error-label"
-							id="demo-simple-select-error"
-							value='10'
+							labelId="payment-type-label"
+							id="payment-type-select"
+							value=''
 							label="Payment Type"
-							onChange={() => console.log('jj')}
-						>
-							<MenuItem value="">
-								<em>None</em>
-							</MenuItem>
-							<MenuItem value='paper'>Waste recycling</MenuItem>
-							<MenuItem value='cans'>EcoCredit</MenuItem>
-							<MenuItem value='cans'>EcoProduct</MenuItem>
-						</Select>
-						<FormHelperText>Error</FormHelperText>
+							menuItems={paymentTypes}
+							errorMessage={errors?.paymentType?.message}
+							{...register('paymentType', { required: 'First name is required' })}
+						/>
 					</FormControl>
-					<FormControl error required>
-						<InputLabel id="demo-simple-select-error-label">Coin</InputLabel>
+					<FormControl error={Boolean(errors?.coin)} required>
 						<Select
-							labelId="demo-simple-select-error-label"
-							id="demo-simple-select-error"
-							value='10'
+							labelId="coin-label"
+							id="coin-select"
+							value=''
 							label="Coin"
-							onChange={() => console.log('jj')}
-						>
-							<MenuItem value="">
-								<em>None</em>
-							</MenuItem>
-							<MenuItem value='paper'>ECO</MenuItem>
-							<MenuItem value='cans'>USDT</MenuItem>
-							<MenuItem value='cans'>USDC</MenuItem>
-							<MenuItem value='cans'>DAI</MenuItem>
-							<MenuItem value='cans'>BUSD</MenuItem>
-						</Select>
-						<FormHelperText>Error</FormHelperText>
+							menuItems={coins}
+							errorMessage={errors?.coin?.message}
+							{...register('coin', { required: 'Coin is required' })}
+						/>
 					</FormControl>
 					<FormControl>
 						<TextField
@@ -68,12 +62,12 @@ export const EcoPay: React.FC = (): JSX.Element => {
 							label="Amount"
 							type='text'
 							aria-required="true"
-							error={Boolean(errors?.firstName)}
-							aria-invalid={Boolean(errors?.firstName)}
-							helperText={errors?.firstName?.message}
-							{...register('firstName', { required: 'First name is required' })}
+							error={Boolean(errors?.amount)}
+							aria-invalid={Boolean(errors?.amount)}
+							helperText={errors?.amount?.message}
+							{...register('amount', { required: 'First name is required' })}
 						/>
-						<FormHelperText sx={{textAlign: 'right', color: 'var(--black-900)'}}>Available: 30 USDT</FormHelperText>
+						<FormHelperText sx={{ textAlign: 'right', color: 'var(--black-900)' }}>Available: 30 USDT</FormHelperText>
 					</FormControl>
 					<TextField
 						required
@@ -83,41 +77,20 @@ export const EcoPay: React.FC = (): JSX.Element => {
 						aria-required="true"
 						multiline
 						rows={5}
-						error={Boolean(errors?.lastName)}
-						aria-invalid={Boolean(errors?.lastName)}
-						helperText={errors?.lastName?.message}
-						{...register('lastName', { required: 'Last name is required' })}
+						error={Boolean(errors?.additionalNote)}
+						aria-invalid={Boolean(errors?.additionalNote)}
+						helperText={errors?.additionalNote?.message}
+						{...register('additionalNote', { required: 'Last name is required' })}
 					/>
 					<LoadingButton
 						loading={isLoading}
-						loadingPosition="end"
 						disabled={isLoading}
 						endIcon={<CreditScore />}
-						variant='contained'
-						size="small"
-						sx={{ width: 'content', marginX: 'auto' }}
+						buttonName="Pay"
 						onClick={handleSubmit(async (formData) => {
 							update({ isLoading: true });
-							// eslint-disable-next-line no-unused-vars
-							const { confirmPassword, ...data } = formData;
-							let newuserInfo;
-							try{
-								newuserInfo = await API.CreateNewUser(data);
-							}catch(error: any) {
-								update({
-									isLoading: false,
-									hasError: true,
-									errorMessage: `${error?.status}: ${error?.statusText} ${error?.data?.message?.[0]}` ?? 'Error encountered while saving your details. Kindly try again.'
-								});
-								return;
-							}
-
-							update({ isLoading: false, hasError: false, hasSuccess: true, successMessage: 'Registration successful' });
-							return newuserInfo;
 						})}
-					>
-                    Pay
-					</LoadingButton>
+					/>
 				</FormControl>
 			</Box>
 			<FormStatusAlert

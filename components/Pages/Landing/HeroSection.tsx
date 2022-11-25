@@ -1,10 +1,6 @@
 import { NorthEast, Info } from '@mui/icons-material';
-import { Typography } from '@mui/material';
-import Box  from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
+import { Button, Box, Grid, Typography } from '@mui/material';
 import * as React from 'react';
-
-import { Button } from '@Components';
 
 export const HeroSection: React.FC = (): JSX.Element => {
 	return <Box sx={

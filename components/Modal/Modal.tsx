@@ -1,5 +1,5 @@
 import { Close } from '@mui/icons-material';
-import { Dialog, DialogTitle , DialogContent, IconButton, Box } from '@mui/material';
+import { Dialog, DialogTitle , DialogContent, IconButton } from '@mui/material';
 import * as React from 'react';
 
 type Props = {

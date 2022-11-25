@@ -5,7 +5,7 @@ import * as React from 'react';
 import { useForm } from 'react-hook-form';
 
 import { API } from '@API';
-import { FormStatusAlert } from '@Components';
+import { FormStatusAlert, PasswordInput } from '@Components';
 import { CreateUserDto } from '@Dto';
 import { useFormSubmit } from '@Hooks';
 import { EcoChampion } from '@Utilities';
@@ -39,8 +39,8 @@ export const SignUp: React.FC = (): JSX.Element => {
 			<FormControl sx={{ width: '50%', marginX: 'auto', gap: '2rem' }}>
 				<TextField
 					required
-					id="outlined-name"
-					label="Firstname"
+					id="first-name"
+					label="First name"
 					type='text'
 					aria-required="true"
 					error={Boolean(errors?.firstName)}
@@ -50,8 +50,8 @@ export const SignUp: React.FC = (): JSX.Element => {
 				/>
 				<TextField
 					required
-					id="outlined-name"
-					label="Lastname"
+					id="last-name"
+					label="Last name"
 					type='text'
 					aria-required="true"
 					error={Boolean(errors?.lastName)}
@@ -61,7 +61,7 @@ export const SignUp: React.FC = (): JSX.Element => {
 				/>
 				<TextField
 					required
-					id="outlined-name"
+					id="email"
 					label="Email"
 					type='email'
 					aria-required="true"
@@ -72,7 +72,7 @@ export const SignUp: React.FC = (): JSX.Element => {
 				/>
 				<TextField
 					required
-					id="outlined-name"
+					id="phone-number"
 					label="Phone number"
 					type="tel"
 					aria-required="true"
@@ -81,33 +81,30 @@ export const SignUp: React.FC = (): JSX.Element => {
 					helperText={errors?.phoneNumber?.message}
 					{...register('phoneNumber', { required: 'Phone number is required' })}
 				/>
-				<TextField
+				<PasswordInput
 					required
-					id="outlined-name"
+					id="password"
 					label="Password"
 					aria-required="true"
 					error={Boolean(errors?.password)}
 					aria-invalid={Boolean(errors?.password)}
 					helperText={errors?.password?.message}
-					type='password'
 					{...register('password', { required: 'Password is required' })}
 				/>
-				<TextField
+				<PasswordInput
 					required
-					id="outlined-name"
+					id="confirm-password"
 					label="Confirm password"
 					aria-required="true"
 					error={Boolean(errors?.confirmPassword)}
 					aria-invalid={Boolean(errors?.confirmPassword)}
 					helperText={errors?.confirmPassword?.message}
-					type='password'
 					{...register('confirmPassword', { required: 'Confirm password is required' })}
 				/>
-
 				<>
-					<FormLabel id="demo-radio-buttons-group-label">Which category of EcoChampions best describe you? <Tooltip title="Specifies the type of activity you want to perform in the accoun."><Info fontSize='small'/></Tooltip></FormLabel>
+					<FormLabel id="ecochampion-category-label">Which category of EcoChampions best describe you? <Tooltip title="Specifies the type of activity you want to perform in the accoun."><Info fontSize='small'/></Tooltip></FormLabel>
 					<RadioGroup
-						aria-labelledby="demo-radio-buttons-group-label"
+						aria-labelledby="ecochampion-category-label"
 						defaultValue={EcoChampion.ECO_COLLECTOR}
 						{...register('ecoChampion', { required: 'Ecochampion group is required' })}
 					>
@@ -125,7 +122,6 @@ export const SignUp: React.FC = (): JSX.Element => {
 					sx={{ width: 'content', marginX: 'auto' }}
 					onClick={handleSubmit(async (formData) => {
 						update({ isLoading: true });
-						//eslint-disable-next-line no-unused-vars
 						const { confirmPassword, ...data } = formData;
 						let newuserInfo;
 						try{

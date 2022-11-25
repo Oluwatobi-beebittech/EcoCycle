@@ -9,7 +9,7 @@ type CopyClipboardReturn = {
 export const useCopyToClipboard = (): CopyClipboardReturn => {
 	const [ isItemCopied, setIsItemCopied ] = React.useState<boolean>(false);
 
-	if(typeof window === undefined) {
+	if(typeof window === 'undefined') {
 		return {
 			isItemCopied: false,
 			clearIsItemCopied: () => new Error('Call to non-existent function'),

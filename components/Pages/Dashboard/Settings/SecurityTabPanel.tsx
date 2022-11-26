@@ -53,7 +53,7 @@ export const SecurityTabPanel: React.FC<Props> = ({ currentTabPanelIndex, index 
 						loading={isLoading}
 						disabled={isLoading}
 						endIcon={<LockReset/>}
-						buttonName="Schedule"
+						buttonName="Update"
 						onClick={handleSubmit(async (formData) => {
 							update({ isLoading: true });
 						})}

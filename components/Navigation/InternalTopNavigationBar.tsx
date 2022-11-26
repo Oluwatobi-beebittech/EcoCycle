@@ -1,5 +1,5 @@
 import { AccountCircle, NotificationsNone } from '@mui/icons-material';
-import { AppBar,Badge,Button, Container, Toolbar,  Typography } from '@mui/material';
+import { AppBar, Avatar, Badge,Button, Container, Toolbar,  Typography } from '@mui/material';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 import Link from 'next/link';
 import * as React from 'react';
@@ -38,9 +38,9 @@ export const InternalTopNavigationBar: React.FC = (): JSX.Element => {
 							</Link>
 						</MuiLink>
 						<MuiLink className="nav-links__link--desktop">
-							<Button size="small" startIcon={<AccountCircle color="action" fontSize='large'/>} sx={{ textTransform: 'none' }}>
-								Account
-							</Button>
+							<Link href="/dashboard/settings">
+								<Avatar>J</Avatar>
+							</Link>
 						</MuiLink>
 					</Toolbar>
 				</Toolbar>

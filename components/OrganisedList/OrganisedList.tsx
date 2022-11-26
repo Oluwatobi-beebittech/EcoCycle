@@ -1,4 +1,4 @@
-import { Avatar, List,ListItem, ListItemAvatar, ListItemText, ListSubheader } from '@mui/material';
+import { Avatar, List, ListItem, ListItemAvatar, ListItemText, ListSubheader } from '@mui/material';
 import NextImage, { StaticImageData } from 'next/image';
 import * as React from 'react';
 
@@ -6,6 +6,7 @@ export type OrganisedListItems = {
     image: StaticImageData;
     name: string;
     description: string;
+	itemEndComponent?: React.ReactElement | undefined;
 };
 type Props = {
     listTitle: string;
@@ -23,7 +24,7 @@ export const OrganisedList: React.FC<Props> = ({ listTitle, listItems }): JSX.El
 				</ListSubheader>}
 		>
 			{
-				listItems.map(({ image, name, description }) =>
+				listItems.map(({ image, name, description, itemEndComponent }) =>
 					<ListItem key={name}>
 						<ListItemAvatar>
 							<Avatar>
@@ -34,6 +35,7 @@ export const OrganisedList: React.FC<Props> = ({ listTitle, listItems }): JSX.El
 							</Avatar>
 						</ListItemAvatar>
 						<ListItemText primaryTypographyProps={{ sx: { fontWeight: 'bold' } }} primary={name} secondary={description} />
+						{!!itemEndComponent && itemEndComponent}
 					</ListItem>
 				)
 			}

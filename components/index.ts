@@ -11,3 +11,4 @@ export * from './OrganisedList';
 export * from './Table';
 export * from './Select';
 export * from './PasswordInput';
+export * from './LoadingPopup';

@@ -1,15 +1,15 @@
 import { Brightness1, Brightness1Outlined } from '@mui/icons-material';
-import { Button as MuiButton, Box, Typography, Tooltip } from '@mui/material';
+import { Button as MuiButton, ButtonProps, Box, Typography, Tooltip } from '@mui/material';
 import NextImage, { StaticImageData } from 'next/image';
 import * as React from 'react';
 
-type Props = {
+type Props = Omit<ButtonProps, 'sx'> & {
 	isWalletDetected: boolean;
 	walletIcon: StaticImageData;
 	walletName: string;
 };
 export const WalletConnectionButton: React.FC<Props>  = (
-	{ isWalletDetected, walletIcon, walletName }
+	{ isWalletDetected, walletIcon, walletName, ...rest }
 ): JSX.Element =>
 	<Tooltip
 		open={!isWalletDetected}
@@ -28,8 +28,9 @@ export const WalletConnectionButton: React.FC<Props>  = (
 				color: 'var(--black-900)',
 				border: '1px solid var(--black-900)'
 			}
-
-		}}>
+		}}
+		{...rest}
+		>
 			<Box sx={{
 				display: 'flex',
 				flexDirection: 'row',

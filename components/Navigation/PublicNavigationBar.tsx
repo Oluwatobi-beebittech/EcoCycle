@@ -36,7 +36,7 @@ export const PublicNavigationBar: React.FC = (): JSX.Element => {
 						<MuiLink className="nav-links__link" component='button'>
 							<Link href="/#how-it-works">How it works</Link>
 						</MuiLink>
-						<MuiLink className="nav-links__link">
+						<MuiLink className="nav-links__link" component='button'>
 							<Link href="/login">Login</Link>
 						</MuiLink>
 						<Link href="/signup">

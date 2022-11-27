@@ -3,7 +3,7 @@ import { Box, IconButton, OutlinedInput, InputAdornment,  Tooltip, Typography, C
 import * as React from 'react';
 
 import { FormStatusAlert,LoadingPopup, Modal, WalletConnectionButton } from '@Components';
-import { useCopyToClipboard, useFormSubmit, useGetConnectedWalletStatus } from '@Hooks';
+import { useCopyToClipboard, useFormSubmit } from '@Hooks';
 import { connectExternalWallet, switchToDeployedChainNetwork, chainDetails } from '@Utilities';
 
 import { WalletButtonItems } from './WalletButtonItems';

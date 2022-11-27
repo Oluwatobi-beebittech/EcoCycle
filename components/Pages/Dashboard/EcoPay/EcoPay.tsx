@@ -37,9 +37,9 @@ export const EcoPay: React.FC = (): JSX.Element => {
 						<Select
 							labelId="payment-type-label"
 							id="payment-type-select"
-							value=''
 							label="Payment Type"
 							menuItems={paymentTypes}
+							defaultValue=''
 							errorMessage={errors?.paymentType?.message}
 							{...register('paymentType', { required: 'First name is required' })}
 						/>
@@ -48,9 +48,9 @@ export const EcoPay: React.FC = (): JSX.Element => {
 						<Select
 							labelId="coin-label"
 							id="coin-select"
-							value=''
 							label="Coin"
 							menuItems={coins}
+							defaultValue=''
 							errorMessage={errors?.coin?.message}
 							{...register('coin', { required: 'Coin is required' })}
 						/>

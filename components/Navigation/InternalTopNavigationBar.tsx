@@ -30,14 +30,14 @@ export const InternalTopNavigationBar: React.FC = (): JSX.Element => {
                         EcoCycle
 					</Typography>
 					<Toolbar sx={{ width:'100%', justifyContent: 'flex-end', }} className='nav-links'>
-						<MuiLink className="nav-links__link--desktop">
+						<MuiLink className="nav-links__link--desktop" component='button'>
 							<Link href="/#how-it-works">
 								<Badge badgeContent={4} color="primary">
 									<NotificationsNone color="action" />
 								</Badge>
 							</Link>
 						</MuiLink>
-						<MuiLink className="nav-links__link--desktop">
+						<MuiLink className="nav-links__link--desktop" component='button'>
 							<Link href="/dashboard/settings">
 								<Avatar>J</Avatar>
 							</Link>

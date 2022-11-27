@@ -1,8 +1,8 @@
 import * as React from 'react';
 
-import { Login as AppLogin, InternalLayout, BalanceCard, CoinsOrganisedList } from '@Components';
-
+import { InternalLayout, BalanceCard, CoinsOrganisedList } from '@Components';
 export default function Dashboard() {
+
 	return (
 		<>
 			<CoinsOrganisedList/>

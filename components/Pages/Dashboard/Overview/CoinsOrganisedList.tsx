@@ -4,6 +4,7 @@ import * as React from 'react';
 
 import { OrganisedList, OrganisedListItems } from '@Components';
 import { useGetConnectedWalletStatus } from '@Hooks';
+import { registerEcoCycleToken, ecoCycleTokenDetails } from '@Utilities';
 import MetamaskIcon from 'public/metamask.png';
 
 const LinkWalletWithEcoTokenButton: React.ReactElement =  <Tooltip
@@ -13,6 +14,10 @@ const LinkWalletWithEcoTokenButton: React.ReactElement =  <Tooltip
 		size='small'
 		startIcon={<AddLink />}
 		sx={{ textTransform: 'none' }}
+		onClick={async () => {
+			await registerEcoCycleToken(ecoCycleTokenDetails);
+		}
+		}
 	>
 		Link
 	</Button>

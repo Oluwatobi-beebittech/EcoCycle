@@ -1,23 +1,8 @@
-type ConnectionStatus = {
-    statusMessage: string;
-    hasError: boolean;
-    isSuccess: boolean;
-    walletAddress?: string | undefined;
-};
+import type { ChainDetails, ConnectionStatus, EcoTokenDetails } from './Types';
+
+import { connectionFailed, connectionSuccess } from './Defaults';
 
 export const isWalletAvailable = (): boolean => global?.window && window.ethereum;
-
-const connectionFailed: ConnectionStatus = {
-	statusMessage: 'Unable to connect to wallet.',
-	hasError: true,
-	isSuccess: false,
-};
-
-const connectionSuccess: ConnectionStatus = {
-	statusMessage: 'Wallect connected successfully.',
-	hasError: false,
-	isSuccess: true,
-};
 
 export const connectExternalWallet = async (): Promise<ConnectionStatus> => {
 	if(!isWalletAvailable()) return connectionFailed;
@@ -36,13 +21,6 @@ export const connectExternalWallet = async (): Promise<ConnectionStatus> => {
 	}
 };
 
-type EcoTokenDetails = {
-    address: string;
-    symbol: string;
-    decimals: number;
-    image: string;
-};
-
 export const registerEcoCycleToken = async (ecoTokenDetails: EcoTokenDetails) => {
 
 	if(!isWalletAvailable()) return connectionFailed;
@@ -58,27 +36,16 @@ export const registerEcoCycleToken = async (ecoTokenDetails: EcoTokenDetails) =>
 
 		if (wasAdded) {
 			console.log('Thanks for your interest!');
+
 		} else {
 			console.log('Your loss!');
 		}
+
+		return wasAdded;
 	} catch (error) {
 		console.log(error);
 	}
 };
-
-type NativeCurrencyDetails = {
-    decimals: number;
-    name: string;
-    symbol: string;
-};
-
-export type ChainDetails = {
-    blockExplorerUrls: Array<string>;
-    chainId: string;
-    chainName: string;
-    nativeCurrency: NativeCurrencyDetails;
-    rpcUrls: Array<string>;
-}
 
 const addDeployedChainNetwork = async (chainDetails: ChainDetails): Promise<ConnectionStatus> => {
 	try{

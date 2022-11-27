@@ -32,10 +32,21 @@ export const useGetConnectedWalletStatus = (): ConnectedWalletStatus => {
 		}
 	};
 
+	const addWalletListener = () => {
+		window.ethereum.on('accountsChanged', (addresses: Array<string>) => {
+			setConnectedWalletStatus({
+				isExternalWalletConnected: addresses.length > 0,
+				addresses
+			});
+		  }
+		);
+	};
+
 	React.useEffect(() => {
 		if(!isWalletAvailable()) return;
 
 		getConnectedWallet();
+		addWalletListener();
 	}, []);
 
 	return connectedWalletStatus;

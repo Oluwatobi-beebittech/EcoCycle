@@ -10,5 +10,5 @@ export const getChainRPCUrl = ():string => process.env.NEXT_PUBLIC_CHAIN_RPC_URL
 
 export const getEcoTokenAddress = ():string => process.env.NEXT_PUBLIC_ECO_TOKEN_ADDRESS as string;
 export const getEcoTokenSymbol = ():string => process.env.NEXT_PUBLIC_ECO_TOKEN_SYMBOL as string;
-export const getEcoTokenDecimals = ():string => process.env.NEXT_PUBLIC_ECO_TOKEN_DECIMALS as string;
+export const getEcoTokenDecimals = ():number => Number(process.env.NEXT_PUBLIC_ECO_TOKEN_DECIMALS);
 export const getEcoTokenLogoUrl = ():string => process.env.NEXT_PUBLIC_ECO_TOKEN_LOGO_URL as string;

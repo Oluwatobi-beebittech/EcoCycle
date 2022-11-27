@@ -1,6 +1,8 @@
 import { Box,  Tab, Tabs, Typography , } from '@mui/material';
 import * as React from 'react';
 
+import { useGetConnectedWalletStatus } from 'hooks';
+
 import { ApiKeysTabPanel } from './ApiKeysTabPanel';
 import { ExternalWalletTabPanel } from './ExternalWalletTabPanel';
 import { ProfileTabPanel } from './ProfileTabPanel';
@@ -12,6 +14,7 @@ export const Settings: React.FC = (): JSX.Element => {
 	const maximumTabIndex = 3;
 	const minimumTabIndex = 0;
 	useSetTabIndex(currentTabIndex, setCurrentTabIndex, minimumTabIndex, maximumTabIndex);
+	const { isExternalWalletConnected, addresses } = useGetConnectedWalletStatus();
 
 	return (
 		<Box sx={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
@@ -24,7 +27,12 @@ export const Settings: React.FC = (): JSX.Element => {
 			</Tabs>
 			<ProfileTabPanel currentTabPanelIndex={currentTabIndex} index={0} />
 			<ApiKeysTabPanel currentTabPanelIndex={currentTabIndex} index={1} />
-			<ExternalWalletTabPanel currentTabPanelIndex={currentTabIndex} index={2} />
+			<ExternalWalletTabPanel
+				currentTabPanelIndex={currentTabIndex}
+				index={2}
+				isExternalWalletConnected={isExternalWalletConnected}
+				walletAddress={addresses[0]}
+			/>
 			<SecurityTabPanel currentTabPanelIndex={currentTabIndex} index={3} />
 		</Box>
 	);

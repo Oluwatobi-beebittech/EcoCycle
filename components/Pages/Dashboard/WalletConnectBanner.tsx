@@ -3,17 +3,8 @@ import { Box, IconButton, OutlinedInput, InputAdornment,  Tooltip, Typography, C
 import * as React from 'react';
 
 import { FormStatusAlert,LoadingPopup, Modal, WalletConnectionButton } from '@Components';
-import { useCopyToClipboard, useFormSubmit } from '@Hooks';
-import { connectExternalWallet, switchToDeployedChainNetwork, ChainDetails } from '@Utilities';
-import {
-	getChainBlockExplorerUrl,
-	getChainCurrencyName,
-	getChainCurrencySymbol,
-	getChainId,
-	getChainName,
-	getChainRPCUrl,
-	getChainCurrencyDecimals,
-} from 'Environment';
+import { useCopyToClipboard, useFormSubmit, useGetConnectedWalletStatus } from '@Hooks';
+import { connectExternalWallet, switchToDeployedChainNetwork, chainDetails } from '@Utilities';
 
 import { WalletButtonItems } from './WalletButtonItems';
 
@@ -28,18 +19,6 @@ export const WalletConnectBanner: React.FC<Props> = (
 	const { isItemCopied, clearIsItemCopied, copyItem } = useCopyToClipboard();
 	const [ isModalOpen, setIsModalOpen ] = React.useState<boolean>(false);
 	const { isLoading, hasSuccess, successMessage, hasError, errorMessage, update } = useFormSubmit();
-
-	const chainDetails: ChainDetails = {
-		blockExplorerUrls: [ getChainBlockExplorerUrl() ],
-		chainId: getChainId(),
-		chainName: getChainName(),
-		nativeCurrency: {
-			name: getChainCurrencyName(),
-			symbol: getChainCurrencySymbol(),
-			decimals: getChainCurrencyDecimals(),
-		},
-		rpcUrls: [ getChainRPCUrl() ]
-	};
 
 	return <><Box sx={{ width: '100%' }}>
 		<Typography variant='subtitle1'>Welcome ${fullName}</Typography>

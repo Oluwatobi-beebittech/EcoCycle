@@ -3,8 +3,8 @@ import { FormHelperText, MenuItem, Select as MuiSelect, SelectProps, InputLabel 
 import * as React from 'react';
 
 export type MenuItems = Array<{
-    name: string;
-    value: string;
+    name: string | number;
+    value: string | number;
 }>;
 
 type Props = SelectProps & {
@@ -15,7 +15,7 @@ export const Select = React.forwardRef< HTMLSelectElement, Props>((
 	props, ref
 ): JSX.Element => {
 	const { errorMessage, menuItems, labelId, label, ...rest } = props;
-	console.log({ othr: rest, ref });
+
 	return (
 		<>
 			<InputLabel id={labelId}>{label}</InputLabel>

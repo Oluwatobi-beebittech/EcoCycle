@@ -12,3 +12,15 @@ export enum Coins {
   DAI = 'DAI',
   BUSD = 'BUSD'
 }
+
+export enum PaymentTypeReadable {
+  'waste_recycling' = 'Waste Recycling',
+  'eco_product' = 'EcoProduct',
+  'eco_tax_credit' = 'EcoTaxCredit'
+}
+
+export enum PaymentTypeMapping {
+  'waste_recycling' = 'waste_recycling',
+  'eco_product' = 'eco_product',
+  'eco_tax_credit' = 'eco_tax_credit'
+}

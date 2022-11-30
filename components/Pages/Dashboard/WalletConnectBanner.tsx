@@ -1,10 +1,12 @@
-import { ContentCopyOutlined, Brightness1, Brightness1Outlined, AddLink } from '@mui/icons-material';
+import { ContentCopyOutlined, Brightness1, Brightness1Outlined, AddLink, InfoOutlined } from '@mui/icons-material';
 import { Box, IconButton, OutlinedInput, InputAdornment,  Tooltip, Typography, ClickAwayListener } from '@mui/material';
+import NextImage from 'next/image';
 import * as React from 'react';
 
 import { FormStatusAlert,LoadingPopup, Modal, WalletConnectionButton } from '@Components';
 import { useCopyToClipboard, useFormSubmit } from '@Hooks';
 import { connectExternalWallet, switchToDeployedChainNetwork, chainDetails } from '@Utilities';
+import MetamaskIcon from 'public/metamask.png';
 
 import { WalletButtonItems } from './WalletButtonItems';
 
@@ -64,11 +66,22 @@ export const WalletConnectBanner: React.FC<Props> = (
 						</InputAdornment>
 					}/>
 			</ClickAwayListener>
-			<Tooltip title='Connect an external wallet'>
+			{!isExternalWalletConnected && <Tooltip title='Connect an external wallet'>
 				<IconButton onClick={() => setIsModalOpen(true)}>
 					<AddLink sx={{ fontSize: '1.3rem', color: 'var(--green-500)' }}/>
 				</IconButton>
+			</Tooltip>}
+			{isExternalWalletConnected && <><NextImage
+				src={MetamaskIcon}
+				alt='Metamask'
+				width='25'
+				height='25'
+			/>
+			<Tooltip placement='top' title='To disconnect account from Metamask, go to the Metamask Wallet'>
+				<InfoOutlined fontSize='small'/>
 			</Tooltip>
+			</>}
+
 		</Box>
 	</Box>
 	<Modal onClose={() => setIsModalOpen(false)} isOpen={isModalOpen} title='Connect Wallet'>
@@ -110,6 +123,8 @@ export const WalletConnectBanner: React.FC<Props> = (
 									successMessage: switchStatusMessage
 								});
 							}
+
+							setIsModalOpen(false);
 						}}
 					/>)}
 		</Box>

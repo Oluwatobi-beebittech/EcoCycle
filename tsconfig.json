@@ -16,7 +16,7 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-        "@API": ["api/"],
+        "@API": ["clientAPI/"],
         "@Components": ["components/"],
         "@Dto": ["dto/"],
         "@Pages": ["pages/"],

@@ -35,22 +35,18 @@ export const registerEcoCycleToken = async (ecoTokenDetails: EcoTokenDetails) =>
 		});
 
 		if (wasAdded) {
-			console.log('Thanks for your interest!');
 			return {
 				...connectionSuccess,
 				statusMessage: 'EcoToken linked successfully'
 			};
 
-		} else {
-			console.log('Your loss!');
-			return {
-				...connectionFailed,
-				statusMessage: 'EcoToken linking failed'
-			};
 		}
 
+		return {
+			...connectionFailed,
+			statusMessage: 'EcoToken linking failed'
+		};
 	} catch (error) {
-		console.log(error);
 		return {
 			...connectionFailed,
 			statusMessage: 'EcoToken linking failed'

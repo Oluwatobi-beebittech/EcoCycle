@@ -1,8 +1,11 @@
 import * as React from 'react';
 
 import { SchedulePickup as Pickup, InternalLayout } from '@Components';
-
+import { useVerifyAuth } from '@Hooks';
 export default function SchedulePickup() {
+	const [ isVerifying ] = useVerifyAuth();
+	if(isVerifying) return <></>;
+
 	return (
 		<>
 			<Pickup/>

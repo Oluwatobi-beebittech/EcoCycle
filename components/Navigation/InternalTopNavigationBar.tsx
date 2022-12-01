@@ -1,5 +1,5 @@
-import { AccountCircle, NotificationsNone } from '@mui/icons-material';
-import { AppBar, Avatar, Badge,Button, Container, Toolbar,  Typography } from '@mui/material';
+import { NotificationsNone } from '@mui/icons-material';
+import { AppBar, Avatar, Badge, Container, Toolbar,  Typography } from '@mui/material';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 import Link from 'next/link';
 import * as React from 'react';

@@ -2,7 +2,7 @@ import { AppBar, Typography } from '@mui/material';
 import Container from '@mui/material/Container';
 import Toolbar from '@mui/material/Toolbar';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
-import Link from 'next/link';
+import { useRouter, NextRouter } from 'next/router';
 import * as React from 'react';
 
 import { Button } from '@Components';
@@ -24,6 +24,7 @@ const ElevationScroll: React.FC<Props> = ({ children }): JSX.Element => {
 };
 
 export const PublicNavigationBar: React.FC = (): JSX.Element => {
+	const router: NextRouter = useRouter();
 
 	return <ElevationScroll>
 		<AppBar>
@@ -33,15 +34,13 @@ export const PublicNavigationBar: React.FC = (): JSX.Element => {
                         EcoCycle
 					</Typography>
 					<Toolbar sx={{ width:'100%', justifyContent: 'flex-end', }} className='nav-links'>
-						<MuiLink className="nav-links__link" component='button'>
-							<Link href="/#how-it-works">How it works</Link>
+						<MuiLink className="nav-links__link" component='button' onClick={() => router.push('/#how-it-works')}>
+							How it works
 						</MuiLink>
-						<MuiLink className="nav-links__link" component='button'>
-							<Link href="/login">Login</Link>
+						<MuiLink className="nav-links__link" component='button' onClick={() => router.push('/login')}>
+							Login
 						</MuiLink>
-						<Link href="/signup">
-							<Button className="nav-links__link" variant="contained" size="small">SignUp</Button>
-						</Link>
+						<Button className="nav-links__link" variant="contained" size="small" onClick={() => router.push('/signup')}>SignUp</Button>
 					</Toolbar>
 				</Toolbar>
 			</Container>

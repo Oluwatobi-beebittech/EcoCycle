@@ -1,5 +1,7 @@
-const accessTokenKey = 'ecocycle_access_token';
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
+export const accessTokenKey: string = 'ecocycle_access_token';
 
-export const setAccessToken = (token: string) => sessionStorage.setItem(accessTokenKey, token);
-export const getAccessToken = () => sessionStorage.getItem(accessTokenKey);
-export const removeAccessToken = () => sessionStorage.removeItem(accessTokenKey);
+export const setAccessToken = (token: string) => cookies.set(accessTokenKey, token, { path: '/' });;
+export const getAccessToken = () => cookies.get(accessTokenKey);
+export const removeAccessToken = () => cookies.remove(accessTokenKey);

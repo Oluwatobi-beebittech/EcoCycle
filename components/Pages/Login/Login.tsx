@@ -76,10 +76,20 @@ export const Login: React.FC = (): JSX.Element => {
 							return;
 						}
 
-						update({ isLoading: false, hasError: false, hasSuccess: true, successMessage: 'Login successful' });
+						update({ isLoading: false });
 						setAccessToken(loginDetails.access_token);
-						router.push('/dashboard');
-						return loginDetails;
+						try {
+							await API.VerifyAuth();
+							update({ hasError: false, hasSuccess: true, successMessage: 'Login successful' });
+							router.push('/dashboard');
+						}catch(error) {
+							update({
+								hasSuccess: false,
+								hasError: true,
+								errorMessage: 'Could not verify access'
+							});
+							router.push('/login');
+						}
 					})}
 				>
                     Login

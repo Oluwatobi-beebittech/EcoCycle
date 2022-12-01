@@ -1,8 +1,11 @@
 import * as React from 'react';
 
 import { Settings as Set, InternalLayout } from '@Components';
-
+import { useVerifyAuth } from '@Hooks';
 export default function Settings() {
+	const [ isVerifying ] = useVerifyAuth();
+	if(isVerifying) return <></>;
+
 	return (
 		<>
 			<Set/>

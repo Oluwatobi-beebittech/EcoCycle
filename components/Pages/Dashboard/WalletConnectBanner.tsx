@@ -23,7 +23,7 @@ export const WalletConnectBanner: React.FC<Props> = (
 	const { isLoading, hasSuccess, successMessage, hasError, errorMessage, update } = useFormSubmit();
 
 	return <><Box sx={{ width: '100%' }}>
-		<Typography variant='subtitle1'>Welcome ${fullName}</Typography>
+		<Typography variant='subtitle1'>Welcome {fullName}</Typography>
 		<Box sx={{
 			display: 'flex',
 			flexDirection: 'row',

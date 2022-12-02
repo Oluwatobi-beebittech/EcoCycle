@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { EcoPay as Pay, InternalLayout } from '@Components';
+import { EcoPay as Pay, InternalLayoutWrapper } from '@Components';
 import { useVerifyAuth } from '@Hooks';
 export default function EcoPay() {
 	const [ isVerifying ] = useVerifyAuth();
@@ -15,8 +15,8 @@ export default function EcoPay() {
 
 EcoPay.getLayout = function getLayout(page: React.ReactElement) {
 	return (
-		<InternalLayout>
+		<InternalLayoutWrapper>
 			{page}
-		</InternalLayout>
+		</InternalLayoutWrapper>
 	);
 };

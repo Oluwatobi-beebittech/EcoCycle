@@ -1,11 +1,9 @@
-import { AnyAction, CombinedState, combineReducers, Reducer } from '@reduxjs/toolkit';
+import { CombinedState, combineReducers, Reducer } from '@reduxjs/toolkit';
 
-import { SliceReducer as Slice, initialState } from './Slice';
+import { UserSliceReducer as UserSlice, UserState } from './UserSlice';
 
 export const RootReducer: Reducer<CombinedState<{
-    Slice: typeof initialState;
-}>, AnyAction> = combineReducers({
-	Slice,
+    UserSlice: UserState;
+}>, any> = combineReducers({
+	UserSlice,
 });
-
-export type RootState = ReturnType<typeof RootReducer>;

@@ -1,6 +1,7 @@
 import { ArrowForward, Info } from '@mui/icons-material';
 import { LoadingButton } from '@mui/lab';
 import { Box, Typography, FormControl,FormLabel,FormControlLabel, Radio, RadioGroup, TextField, Tooltip } from '@mui/material';
+import { useRouter } from 'next/router';
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -17,6 +18,7 @@ type SignUpInputs = CreateUserDto & {
 export const SignUp: React.FC = (): JSX.Element => {
 	const { register, handleSubmit, formState: { errors } } = useForm<SignUpInputs>();
 	const { isLoading, hasSuccess, successMessage, hasError, errorMessage, update } = useFormSubmit();
+	const router = useRouter();
 
 	return <Box sx={
 		{ width: '100%',
@@ -136,6 +138,7 @@ export const SignUp: React.FC = (): JSX.Element => {
 						}
 
 						update({ isLoading: false, hasError: false, hasSuccess: true, successMessage: 'Registration successful' });
+						router.push('/login');
 						return newuserInfo;
 					})}
 				>

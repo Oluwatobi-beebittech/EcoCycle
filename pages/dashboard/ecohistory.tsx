@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { EcoHistory as History, InternalLayout } from '@Components';
+import { EcoHistory as History, InternalLayoutWrapper } from '@Components';
 import { useVerifyAuth } from '@Hooks';
 export default function EcoHistory() {
 	const [ isVerifying ] = useVerifyAuth();
@@ -15,8 +15,8 @@ export default function EcoHistory() {
 
 EcoHistory.getLayout = function getLayout(page: React.ReactElement) {
 	return (
-		<InternalLayout>
+		<InternalLayoutWrapper>
 			{page}
-		</InternalLayout>
+		</InternalLayoutWrapper>
 	);
 };

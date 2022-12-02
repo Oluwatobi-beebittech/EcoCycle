@@ -10,6 +10,7 @@ import { FormStatusAlert, PasswordInput } from '@Components';
 import { LoginUserDto } from '@Dto';
 import { useFormSubmit } from '@Hooks';
 import { setAccessToken } from '@Utilities';
+
 type LoginInputs = LoginUserDto;
 
 export const Login: React.FC = (): JSX.Element => {

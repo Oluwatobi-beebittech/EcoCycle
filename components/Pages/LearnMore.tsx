@@ -1,11 +1,8 @@
 import { NorthEast, Info } from '@mui/icons-material';
 import { Button, Box, Grid, Typography } from '@mui/material';
-import { useRouter, NextRouter } from 'next/router';
 import * as React from 'react';
 
-export const HeroSection: React.FC = (): JSX.Element => {
-	const router: NextRouter = useRouter();
-
+export const LearnMore: React.FC = (): JSX.Element => {
 	return <Box sx={
 		{ width: '100%',
 			height: '90vh',
@@ -26,23 +23,10 @@ export const HeroSection: React.FC = (): JSX.Element => {
 			<Typography variant='h3' sx={{ lineHeight: '4rem' }}> Earn cash as you give waste a new life</Typography>
 			<Grid container spacing={2}>
 				<Grid item md={3}>
-					<Button
-						variant='contained'
-						size='large'
-						endIcon={<NorthEast fontSize='large'/>}
-						onClick={() => router.push('/signup')}
-					>
-							Get Started
-					</Button>
+					<Button variant='contained' size='large' endIcon={<NorthEast fontSize='large'/>}>Get Started</Button>
 				</Grid>
 				<Grid item md={3}>
-					<Button
-						variant='outlined'
-						size='large'
-						endIcon={<Info fontSize='large'/>}
-						onClick={() => router.push('/learn-more')}
-					>Learn More
-					</Button>
+					<Button variant='outlined' size='large' endIcon={<Info fontSize='large'/>}>Learn More</Button>
 				</Grid>
 			</Grid>
 		</Box>

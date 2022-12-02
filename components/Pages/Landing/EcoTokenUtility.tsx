@@ -13,7 +13,7 @@ export const EcoTokenUtility: React.FC = (): JSX.Element => {
 	const [ currentTabIndex, setCurrentTabIndex ] = React.useState<number>(0);
 
 	return <Box
-		id="how-it-works"
+		id="ecotoken-utility"
 		sx={
 			{
 				borderRadius: 'var(--border-radius)',

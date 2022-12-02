@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { BecomeEcoChampion, PublicLayout, HeroSection, HowItWorks, GetRewards, EcoTokenUtility } from '@Components';
+import { BecomeEcoChampion, PublicLayout, HeroSection, HowItWorks, GetRewards, EcoTokenUtility, PotentialPartners } from '@Components';
 declare global {
     interface Window { ethereum: any; }
 }
@@ -13,6 +13,7 @@ export default function Home() {
 			<GetRewards />
 			<EcoTokenUtility />
 			<BecomeEcoChampion />
+			<PotentialPartners />
 		</>
 	);
 }

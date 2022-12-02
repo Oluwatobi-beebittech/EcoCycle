@@ -29,13 +29,13 @@ export const HowitWorksTabContent: AllTabContent = [
 			id: nanoid(),
 			icon: <Category sx={{ width: '6.25rem', height: '6.25rem', color: gray.in_between }}/>,
 			title: 'Sort',
-			description: 'Pick wastes lying within the home, office, or community',
+			description: 'Group wastes according to types.',
 		},
 		{
 			id: nanoid(),
 			icon: <LocalShipping sx={{ width: '6.25rem', height: '6.25rem', color: gray.in_between }}/>,
-			title: 'Sort',
-			description: 'Pick wastes lying within the home, office, or community',
+			title: 'Deliver',
+			description: 'Hand over sorted waste to processor.',
 		}
 	],
 	[

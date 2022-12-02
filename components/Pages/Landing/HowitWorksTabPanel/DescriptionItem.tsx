@@ -26,7 +26,7 @@ export const DescriptionItem: React.FC<Props> = ({ icon, title, description }): 
 				borderRadius: 'var(--border-radius)',
 				padding: '2.6875rem',
 				width: '8.125rem',
-				height: '8.125rem',
+				maxHeight: '8.125rem',
 				alignItems:'center',
 				justifyItems: 'center',
 				display: 'grid'

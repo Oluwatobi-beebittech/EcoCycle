@@ -1,3 +1,4 @@
+export * from './BasicApiResponseStatusDto';
 export * from './EcoPayDto';
 export * from './LazerPayApiKeyDto';
 export * from './LoginDto';

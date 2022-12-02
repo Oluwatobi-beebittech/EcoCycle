@@ -26,10 +26,15 @@ export const InternalLayout: React.FC<Props> = ({ children }): JSX.Element => {
 				<Box component="main" sx={{ flexGrow: 1, p: 3, width: '70%', marginLeft: '20%' }}>
 					<Toolbar />
 					<Box sx={{ display: 'flex', flexDirection: 'column', gap: '4rem', height: '100%' }}>
-						{isLoading ? <Skeleton/> :<WalletConnectBanner
-							isExternalWalletConnected={isExternalWalletConnected}
-							fullName={`${data.firstName} ${data.lastName}`}
-							walletAddress={addresses[0]}/>}
+						{
+							isLoading
+								? <Skeleton/>
+								:<WalletConnectBanner
+									isExternalWalletConnected={isExternalWalletConnected}
+									fullName={`${data.firstName} ${data.lastName}`}
+									walletAddress={addresses[0]}
+								/>
+						}
 						{children}
 					</Box>
 				</Box>

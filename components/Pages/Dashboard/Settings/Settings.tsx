@@ -1,6 +1,8 @@
-import { Box,  Tab, Tabs, Typography , } from '@mui/material';
+import { Box,  Tab, Tabs, Typography , Skeleton } from '@mui/material';
 import * as React from 'react';
+import { useSelector } from 'react-redux';
 
+import { RootState, UserState } from '@Store';
 import { useGetConnectedWalletStatus } from 'hooks';
 
 import { ApiKeysTabPanel } from './ApiKeysTabPanel';
@@ -9,12 +11,17 @@ import { ProfileTabPanel } from './ProfileTabPanel';
 import { SecurityTabPanel } from './SecurityTabPanel';
 import { useSetTabIndex } from './useSetTabIndex';
 
+
 export const Settings: React.FC = (): JSX.Element => {
 	const [ currentTabIndex, setCurrentTabIndex ] = React.useState<number>(0);
 	const maximumTabIndex = 3;
 	const minimumTabIndex = 0;
 	useSetTabIndex(currentTabIndex, setCurrentTabIndex, minimumTabIndex, maximumTabIndex);
 	const { isExternalWalletConnected, addresses } = useGetConnectedWalletStatus();
+	const { isLoading, data }: UserState = useSelector<RootState, UserState>(rootState => rootState.UserSlice);
+	const { lazerPayKey } = data;
+
+	if(isLoading) return <Skeleton/>;
 
 	return (
 		<Box sx={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
@@ -26,7 +33,12 @@ export const Settings: React.FC = (): JSX.Element => {
 				<Tab label="Security" />
 			</Tabs>
 			<ProfileTabPanel currentTabPanelIndex={currentTabIndex} index={0} />
-			<ApiKeysTabPanel currentTabPanelIndex={currentTabIndex} index={1} />
+			<ApiKeysTabPanel
+				currentTabPanelIndex={currentTabIndex}
+				index={1}
+				publicKey={lazerPayKey?.publicKey}
+				secretKey={lazerPayKey?.secretKey}
+			/>
 			<ExternalWalletTabPanel
 				currentTabPanelIndex={currentTabIndex}
 				index={2}

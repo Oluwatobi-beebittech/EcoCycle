@@ -4,10 +4,10 @@ import { getAPIBaseURL } from 'Environment';
 
 import { getAuthHeader } from '../Auth';
 
-export const CreateLazerPayApiKey = async (lazerPayApiKey: LazerPayApiKeyDto) => {
-	const route = '/token';
+export const UpdateLazerPayApiKey = async (lazerPayApiKey: LazerPayApiKeyDto) => {
+	const route = '/token/update';
 
-	return await API.POST<LazerPayApiKeyDto, BasicApiResponseStatusDto>(
+	return await API.PATCH<LazerPayApiKeyDto, BasicApiResponseStatusDto>(
 		getAPIBaseURL(), route, lazerPayApiKey, {
 			...getAuthHeader()
 		}

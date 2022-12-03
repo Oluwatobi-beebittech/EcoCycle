@@ -1,4 +1,4 @@
-![EcoCycle Banner](https://res.cloudinary.com/dfybu7w8o/image/upload/v1670099096/ecocycle_banner_g7aum6.png)
+![EcoCycle Banner](https://res.cloudinary.com/dfybu7w8o/image/upload/v1670102878/ecocycle_banner_728X90_zc2ftp.png)
 # :recycle: :seedling: EcoCycle
 
 EcoCycle is a waste recycling-focused service which seeks to harmonise, reward, and empower actors involved in waste recycling and climate change mitigation, especially in Africa.

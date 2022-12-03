@@ -1,5 +1,5 @@
 import { ShoppingCartCheckout, ConfirmationNumber, Redeem, Public, LightbulbOutlined } from '@mui/icons-material';
-import { Button, Box, Grid, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import * as React from 'react';
 
 export const LearnMore: React.FC = (): JSX.Element => {

@@ -1,34 +1,74 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+![EcoCycle Banner](https://res.cloudinary.com/dfybu7w8o/image/upload/v1670099096/ecocycle_banner_g7aum6.png)
+# :recycle: :seedling: EcoCycle
 
-## Getting Started
+EcoCycle is a waste recycling-focused service which seeks to harmonise, reward, and empower actors involved in waste recycling and climate change mitigation, especially in Africa.
 
-First, run the development server:
+EcoCycle has two major system actors:
+- Collectors: those who gather and sell recyclable waste. Usually individuals.
+- Processors: those who process the recyclable waste bought from the collectors into new materials or refurbished items. Usually businesses.
 
-```bash
-npm run dev
-# or
-yarn dev
+As the collectors and processors interact, they are rewarded using EcoTokens, EcoCycle reward token. In EcoCycle, crypto stablecoins are the primary currency for transactions. However, the EcoTokens earned can also be used to pay for services, obtain tax credit (**EcoTaxCredit**) by burning earned tokens, get discounts for products from approved eco-friendly stores (**EcoDiscount**), and redeem eco-friendly items from approved EcoStores.
+
+EcoCycle helps its users:
+- hedge against inflation as they use crypto stablecoins for transactions
+- contribute to climate change mitigation as they either collect or recycle waste on one hand, and other the other hand, buy or sell eco-friendly products (**EcoProducts**)
+
+Furthermore, EcoCycle is positioned to proffer solutions to pertinent questions raised at the 27th United Nations Climate Change conference (**COP27**). Questions raised bordered on which developing countries to select that will benefit from the climate change fund contributions. Read about [EcoCycle's position on COP27 here](https://eco-cycle.vercel.app/learn-more#cop27) https://eco-cycle.vercel.app/learn-more#cop27.
+
+This repository is the frontend repository for EcoCycle. A decoupled architecture was utilised hence different repositories for the frontend, backend, and smart contract.
+
+## :gem: EcoCycle Application Repositories
+- [**EcoCycle Frontend**](https://github.com/Oluwatobi-beebittech/EcoCycle#readme) https://github.com/Oluwatobi-beebittech/EcoCycle#readme
+- [**EcoCycle Backend**](https://github.com/Oluwatobi-beebittech/EcoCycle-Backend#readme) https://github.com/Oluwatobi-beebittech/EcoCycle-Backend#readme
+- [**EcoCycle Smart Contract (EcoToken)**](https://github.com/Oluwatobi-beebittech/EcoToken#readme) https://github.com/Oluwatobi-beebittech/EcoToken#readme
+## :hammer_and_wrench: Built with
+### Frontend
+- Next JS
+- Typescript
+- React
+- Redux Toolkit
+- Axios
+- Material UI (MUI) for theming
+### Backend
+- Nest JS
+- TypeORM
+- Typescript
+### Smart Contract
+- Solidity version 0.8.17
+- Ethers JS
+- Alchemy SDK
+- Hardhat
+- Typescript
+- Polygon Mumbai Network
+### Third-Party Integrations
+- Lazerpay, for payments in stablecoins. 
+
+## :control_knobs: Smart Contract Details
+- Token Name: EcoToken (ECO)
+- Initial Supply: 20,000,000
+- Decimals: 2
+- Contract Deployed Address: 0x300aca0433775D4848675D8876c9c604BC0887F0
+- Contract Verified at: https://mumbai.polygonscan.com/address/0x300aca0433775D4848675D8876c9c604BC0887F0#code
+
+## Getting Started (Frontend)
+1. Clone repo using `git clonehttps://github.com/Oluwatobi-beebittech/EcoCycle.git`.
+2. Ensure [Node Version Manager(NVM)](https://github.com/nvm-sh/nvm) is installed. The version of node used is 16.15.0.
+3. Run `nvm use` to use node version 16.15.0.
+4. Install all the application's packages using `npm install`.
+5. To start the application, run `npm run dev`.
+6. Create a `.env` file and insert the appropriate values for each environment variable.
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+NEXT_PUBLIC_API_BASE_URL=http://localhost:3001/api/v1
+NEXT_PUBLIC_IS_PROD=false
+NEXT_PUBLIC_CHAIN_BLOCK_EXPLORER_URL=https://polygonscan.com/
+NEXT_PUBLIC_CHAIN_CURRENCY_DECIMALS=18
+NEXT_PUBLIC_CHAIN_CURRENCY_NAME=Polygon
+NEXT_PUBLIC_CHAIN_CURRENCY_SYMBOL=MATIC
+NEXT_PUBLIC_CHAIN_ID=0x13881
+NEXT_PUBLIC_CHAIN_NAME=maticmum
+NEXT_PUBLIC_CHAIN_RPC_URL=https://rpc-mumbai.maticvigil.com/
+NEXT_PUBLIC_ECO_TOKEN_ADDRESS=
+NEXT_PUBLIC_ECO_TOKEN_SYMBOL=
+NEXT_PUBLIC_ECO_TOKEN_DECIMALS=
+NEXT_PUBLIC_ECO_TOKEN_LOGO_URL=
+```

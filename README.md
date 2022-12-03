@@ -7,11 +7,11 @@ EcoCycle has two major system actors:
 - Collectors: those who gather and sell recyclable waste. Usually individuals.
 - Processors: those who process the recyclable waste bought from the collectors into new materials or refurbished items. Usually businesses.
 
-As the collectors and processors interact, they are rewarded using EcoTokens, EcoCycle reward token. In EcoCycle, crypto stablecoins are the primary currency for transactions. However, the EcoTokens earned can also be used to pay for services, obtain tax credit (**EcoTaxCredit**) by burning earned tokens, get discounts for products from approved eco-friendly stores (**EcoDiscount**), and redeem eco-friendly items from approved EcoStores.
+As the collectors and processors interact, they are rewarded using EcoTokens, EcoCycle reward token. In EcoCycle, crypto stablecoins are the primary currency for transactions. However, the EcoTokens earned can also be used to pay for services, obtain tax credit (**EcoTaxCredit**) by burning earned tokens, get discounts for products from approved eco-friendly stores (**EcoDiscount**), and redeem eco-friendly items (**EcoRedeem**) from approved EcoStores.
 
 EcoCycle helps its users:
 - hedge against inflation as they use crypto stablecoins for transactions
-- contribute to climate change mitigation as they either collect or recycle waste on one hand, and other the other hand, buy or sell eco-friendly products (**EcoProducts**)
+- contribute to climate change mitigation as they collect or recycle waste on the one hand or on the other hand, buy or sell eco-friendly products (**EcoProducts**).
 
 Furthermore, EcoCycle is positioned to proffer solutions to pertinent questions raised at the 27th United Nations Climate Change conference (**COP27**). Questions raised bordered on which developing countries to select that will benefit from the climate change fund contributions. Read about [EcoCycle's position on COP27 here](https://eco-cycle.vercel.app/learn-more#cop27) https://eco-cycle.vercel.app/learn-more#cop27.
 
@@ -58,7 +58,7 @@ This repository is the frontend repository for EcoCycle. A decoupled architectur
 5. To start the application, run `npm run dev`.
 6. Create a `.env` file and insert the appropriate values for each environment variable.
 ```
-NEXT_PUBLIC_API_BASE_URL=http://localhost:3001/api/v1
+NEXT_PUBLIC_API_BASE_URL=http://localhost:3001/api/v1 [EcoCycle backend API base URL]
 NEXT_PUBLIC_IS_PROD=false
 NEXT_PUBLIC_CHAIN_BLOCK_EXPLORER_URL=https://polygonscan.com/
 NEXT_PUBLIC_CHAIN_CURRENCY_DECIMALS=18

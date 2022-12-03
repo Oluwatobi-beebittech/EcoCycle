@@ -33,10 +33,11 @@ This repository is the frontend repository for EcoCycle. A decoupled architectur
 - Nest JS
 - TypeORM
 - Typescript
+- Ethers JS
+- Alchemy SDK
 ### Smart Contract
 - Solidity version 0.8.17
 - Ethers JS
-- Alchemy SDK
 - Hardhat
 - Typescript
 - Polygon Mumbai Network

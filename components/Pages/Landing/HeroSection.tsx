@@ -3,6 +3,8 @@ import { Button, Box, Grid, Typography } from '@mui/material';
 import { useRouter, NextRouter } from 'next/router';
 import * as React from 'react';
 
+import { WebRoute } from '@Utilities';
+
 export const HeroSection: React.FC = (): JSX.Element => {
 	const router: NextRouter = useRouter();
 
@@ -30,7 +32,7 @@ export const HeroSection: React.FC = (): JSX.Element => {
 						variant='contained'
 						size='large'
 						endIcon={<NorthEast fontSize='large'/>}
-						onClick={() => router.push('/signup')}
+						onClick={() => router.push(WebRoute.SIGNUP)}
 					>
 							Get Started
 					</Button>
@@ -40,7 +42,7 @@ export const HeroSection: React.FC = (): JSX.Element => {
 						variant='outlined'
 						size='large'
 						endIcon={<Info fontSize='large'/>}
-						onClick={() => router.push('/learn-more')}
+						onClick={() => router.push(WebRoute.LEARN_MORE)}
 					>Learn More
 					</Button>
 				</Grid>

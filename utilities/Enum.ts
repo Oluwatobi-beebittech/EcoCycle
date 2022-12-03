@@ -24,3 +24,14 @@ export enum PaymentTypeMapping {
   'eco_product' = 'eco_product',
   'eco_tax_credit' = 'eco_tax_credit'
 }
+
+export enum WebRoute {
+  LOGIN = '/login',
+  DASHBOARD_OVERVIEW = '/dashboard',
+  SIGNUP = '/signup',
+  LEARN_MORE = '/learn-more',
+  LEARN_ECO_DISCOUNT = '/learn-more#eco-discount',
+  LEARN_ECO_TAX_CREDIT = '/learn-more#eco-tax-credit',
+  LEARN_ECO_REDEEM = '/learn-more#eco-redeem',
+  LEARN_COP_27 = '/learn-more#cop27'
+}

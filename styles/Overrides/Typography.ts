@@ -27,6 +27,11 @@ export const Typography: Partial<MuiTypography> =  {
 		fontSize: '1rem',
 		fontWeight: 400,
 	},
+	body2: {
+		fontFamily: Raleway,
+		fontSize: '1.25rem',
+		fontWeight: 500
+	},
 	subtitle1: {
 		fontFamily: Raleway,
 		fontSize: '1.25rem',

@@ -1,7 +1,10 @@
 import { Box, Typography } from '@mui/material';
+import NextImage from 'next/image';
 import * as React from 'react';
 
 import { ColourPalette } from '@Styles';
+import EgorasLogo from 'public/egoras-logo.png';
+import LazerPayLogo from 'public/lazerpay_logo.png';
 
 const { gray } = ColourPalette;
 
@@ -35,8 +38,16 @@ export const PotentialPartners: React.FC = (): JSX.Element => {
 			justifyContent: 'center',
 			gap: '20%'
 		}} >
-			<p>Egoras</p>
-			<p>Lazer Pay</p>
+			<NextImage
+				src={EgorasLogo}
+				alt="Picture of the author"
+				width="300"
+			/>
+			<NextImage
+				src={LazerPayLogo}
+				alt="Picture of the author"
+				width="300"
+			/>
 		</Box>
 	</Box>;
 };

@@ -6,7 +6,6 @@ export const MuiAlert: Components['MuiAlert'] = {
 			props: {},
 			style: {
 				fontSize: '1rem',
-				maxWidth: '80%'
 			},
 		},
 	],

@@ -77,6 +77,11 @@ export const EcoPay: React.FC = (): JSX.Element => {
 				<AlertTitle><b>Lazerpay payment</b></AlertTitle>
 				Payments may fail because Lazerpay requires KYC to be completed before withdrawals can occur.
 			</Alert>
+			<Alert severity="info">
+				<AlertTitle><b>EcoTaxCredit payment</b></AlertTitle>
+				🚧 Since only earned tokens can be burned, EcoTaxCredit payment flow still under construction as
+				it is dependent on Lazerpay payment.
+			</Alert>
 			<Box sx={{ display: 'flex', flexDirection: 'column', gap: '1rem', justifyContent: 'center' }}>
 				<FormControl sx={{ width: '50%', marginX: 'auto', gap: '2rem' }}>
 					<FormControl error={Boolean(errors?.paymentType)} required>

@@ -59,4 +59,40 @@ export const getEcoTokenBalance = (ecoTokenWalletAddress: string): AppThunk => a
 	}
 };
 
+export const getStableCoinsBalance = (coin: Coins): AppThunk => async (dispatch) => {
+	dispatch(
+		_setState({
+			isStableCoinsLoading: true,
+		})
+	);
+
+	try {
+		const [ coinBalance, fundingAddress ] = await Promise.all([
+			API.GetStableCoinBalance(coin), API.GetStableCoinFundingAddress(coin)
+		]);
+		dispatch(
+			_setState({
+				isStableCoinsLoading: false,
+				hasError: false,
+			})
+		);
+		dispatch(
+			_setTokenBalance({
+				[coin]: {
+					walletAddress: fundingAddress.address,
+					tokenBalance: coinBalance.amount
+				},
+			})
+		);
+	} catch (error: any) {
+		dispatch(
+			_setState({
+				isStableCoinsLoading: false,
+				hasError: true,
+				errorMessage: error?.data?.message,
+			})
+		);
+	}
+};
+
 export const { reducer: TokensSliceReducer } = TokensSlice;

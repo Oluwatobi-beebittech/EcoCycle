@@ -4,7 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { InternalTopNavigationBar, InternalSideBarNavigation, WalletConnectBanner } from '@Components';
 import { useGetConnectedWalletStatus } from '@Hooks';
-import { AppDispatch, RootState, UserState, getUserDetails, getEcoTokenBalance } from '@Store';
+import { AppDispatch, RootState, UserState, getUserDetails, getEcoTokenBalance, getStableCoinsBalance } from '@Store';
+import { Coins } from '@Utilities';
 
 type Props = {
     children: React.ReactElement;
@@ -22,6 +23,18 @@ export const InternalLayout: React.FC<Props> = ({ children }): JSX.Element => {
 	React.useEffect(() => {
 		if(isExternalWalletConnected) dispatch(getEcoTokenBalance(addresses[0]));
 	}, [ isExternalWalletConnected, addresses[0] ]);
+
+	React.useEffect(() => {
+		if(isLazerPayKeysPresent) {
+			Object.values(Coins)
+				.filter(
+					(coin: Coins) => coin !== Coins.ECO
+				)
+				.forEach(
+					(coin: Coins) => dispatch(getStableCoinsBalance(coin))
+				);
+		}
+	}, [ isLazerPayKeysPresent ]);
 
 	return (
 		<>

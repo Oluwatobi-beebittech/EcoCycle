@@ -13,3 +13,13 @@ export const GetEcoTokenBalance = async (ecoTokenAddress: string) => {
 		}
 	);
 };
+
+export const GetStableCoinBalance = async (coin: string) => {
+	const route = '/lazerpay/tokens/balance';
+
+	return await API.GET<any, any>(
+		getAPIBaseURL(), route, { coin }, {
+			...getAuthHeader()
+		}
+	);
+};

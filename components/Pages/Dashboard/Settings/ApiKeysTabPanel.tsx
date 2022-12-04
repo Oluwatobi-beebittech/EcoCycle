@@ -125,6 +125,11 @@ export const ApiKeysTabPanel: React.FC<Props> = (
 								hasSuccess: true,
 								successMessage: statusText
 							});
+							setTimeout(
+								() => {
+									if(global?.window) window.location.reload();
+								}, 2000
+							);
 						}catch(error: any) {
 							update({
 								isLoading: false,

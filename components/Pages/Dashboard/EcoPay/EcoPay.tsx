@@ -4,6 +4,7 @@ import * as React from 'react';
 import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 
+import { API } from '@API';
 import { FormStatusAlert, MenuItems, Select, LoadingButton } from '@Components';
 import { EcoPayDto } from '@Dto';
 import { useFormSubmit } from '@Hooks';
@@ -19,7 +20,7 @@ export const EcoPay: React.FC = (): JSX.Element => {
 	const { data: tokensData }: TokensState = useSelector<RootState, TokensState>(rootState => rootState.TokensSlice);
 	const selectedToken = watch('coin') as Coins;
 	const selectedTokenBalance = tokensData?.[selectedToken]?.tokenBalance as string ?? '__.__';
-	const availableBalanceText = `Available: ${selectedTokenBalance} ${selectedToken}`;
+	const availableBalanceText = `Available: ${selectedTokenBalance} ${selectedToken ?? ''}`;
 
 	const paymentTypes: MenuItems = [
 		{ name: 'None', value:'' },
@@ -198,6 +199,21 @@ export const EcoPay: React.FC = (): JSX.Element => {
 						buttonName="Pay"
 						onClick={handleSubmit(async (formData) => {
 							update({ isLoading: true });
+							try{
+								const { statusText } = await API.CreateEcoPayPayment(formData);
+								update({
+									isLoading: false,
+									hasError: false,
+									hasSuccess: true,
+									successMessage: statusText
+								});
+							}catch(error: any) {
+								update({
+									isLoading: false,
+									hasError: true,
+									errorMessage: error?.status ? `${error?.status}: ${error?.statusText} ${error?.data?.message?.[0]}` : 'Unable to make payment'
+								});
+							}
 						})}
 					/>
 				</FormControl>

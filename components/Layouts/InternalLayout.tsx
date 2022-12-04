@@ -25,11 +25,14 @@ export const InternalLayout: React.FC<Props> = ({ children }): JSX.Element => {
 	}, [ isExternalWalletConnected, addresses[0] ]);
 
 	React.useEffect(() => {
-		const stableCoins: Array<Coins> = [ Coins.USDT, Coins.USDC, Coins.BUSD, Coins.DAI ];
 		if(isLazerPayKeysPresent) {
-			stableCoins.forEach(
-				(coin: Coins) => dispatch(getStableCoinsBalance(coin))
-			);
+			Object.values(Coins)
+				.filter(
+					(coin: Coins) => coin !== Coins.ECO
+				)
+				.forEach(
+					(coin: Coins) => dispatch(getStableCoinsBalance(coin))
+				);
 		}
 	}, [ isLazerPayKeysPresent ]);
 

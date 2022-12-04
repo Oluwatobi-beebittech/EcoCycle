@@ -42,7 +42,9 @@ This repository is the frontend repository for EcoCycle. A decoupled architectur
 - Typescript
 - Polygon Mumbai Network
 ### Third-Party Integrations
-- Lazerpay, for payments in stablecoins. Currently, users of EcoCycle need to register seperately on Lazerpay and then link their public and secret keys to EcoCycle manually. A partnership with Lazerpay will ensure users only signup to EcoCycle while EcoCycle handles the user's registration on Lazerpay. Consequently, the process will be seamless for the user compared to the current setup.
+- **Lazerpay**, for payments in stablecoins. Lazerpay will enable EcoCycle users topup their accounts using their country currency, withdraw funds to local bank accounts, and manage EcoProduct listings.
+
+Currently, users of EcoCycle need to register seperately on Lazerpay and then link their public and secret keys to EcoCycle manually. A partnership with Lazerpay will ensure users only signup to EcoCycle while EcoCycle handles the user's registration on Lazerpay. Consequently, the process will be seamless for the user compared to the current setup.
 
 ## :control_knobs: Smart Contract Details
 - Token Name: EcoToken (ECO)

@@ -32,7 +32,14 @@ export const Settings: React.FC = (): JSX.Element => {
 				<Tab label="External wallet" />
 				<Tab label="Security" />
 			</Tabs>
-			<ProfileTabPanel currentTabPanelIndex={currentTabIndex} index={0} />
+			<ProfileTabPanel
+				currentTabPanelIndex={currentTabIndex}
+				index={0}
+				firstName={data?.firstName ?? ''}
+				lastName={data?.lastName ?? ''}
+				email={data?.email ?? ''}
+				phoneNumber={data?.phoneNumber ?? ''}
+			/>
 			<ApiKeysTabPanel
 				currentTabPanelIndex={currentTabIndex}
 				index={1}

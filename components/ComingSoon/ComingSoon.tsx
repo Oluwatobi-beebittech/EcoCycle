@@ -9,7 +9,7 @@ export const ComingSoon: React.FC<Props> = ({ featureName, shortDescription }): 
 	return (
 		<Box sx={{ justifyContent: 'center', display: 'flex', flexDirection: 'column',gap: '1.5rem' }}>
 			<Typography variant='h3'>
-                🚧 Ecocycle is bringing {featureName} to you soon.
+                🚧 EcoCycle is bringing {featureName} to you soon.
 			</Typography>
 			<Typography>{shortDescription}</Typography>
 		</Box>

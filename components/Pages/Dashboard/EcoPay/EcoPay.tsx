@@ -2,17 +2,25 @@ import {  CreditScore } from '@mui/icons-material';
 import { Box, FormControl, FormHelperText, InputAdornment, TextField, Typography } from '@mui/material';
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
+import { useSelector } from 'react-redux';
 
 import { FormStatusAlert, MenuItems, Select, LoadingButton } from '@Components';
 import { EcoPayDto } from '@Dto';
 import { useFormSubmit } from '@Hooks';
+import { RootState, TokensState } from '@Store';
 import { Coins, PaymentTypeReadable, PaymentTypeMapping } from '@Utilities';
+
 
 type EcoPayInputs = EcoPayDto;
 
 export const EcoPay: React.FC = (): JSX.Element => {
 	const { register, handleSubmit, formState: { errors }, watch } = useForm<EcoPayInputs>();
 	const { isLoading, hasSuccess, successMessage, hasError, errorMessage, update } = useFormSubmit();
+	const { data: tokensData }: TokensState = useSelector<RootState, TokensState>(rootState => rootState.TokensSlice);
+	const selectedToken = watch('coin') as Coins;
+	const selectedTokenBalance = tokensData?.[selectedToken]?.tokenBalance as string ?? '__.__';
+	const availableBalanceText = `Available: ${selectedTokenBalance} ${selectedToken}`;
+
 	const paymentTypes: MenuItems = [
 		{ name: 'None', value:'' },
 		{ name: PaymentTypeReadable.waste_recycling, value: PaymentTypeMapping.waste_recycling },
@@ -25,6 +33,8 @@ export const EcoPay: React.FC = (): JSX.Element => {
 	const isWasteRecyclingSelected = paymentTypeCurrentValue === PaymentTypeMapping.waste_recycling;
 	const isEcoTaxCreditSelected = paymentTypeCurrentValue === PaymentTypeMapping.eco_tax_credit;
 	const isEcoProductSelected = paymentTypeCurrentValue === PaymentTypeMapping.eco_product;
+
+	const shouldRequireBEP20WalletAddress = selectedToken !== Coins.ECO && !isEcoTaxCreditSelected;
 
 	const coins: MenuItems = isEcoTaxCreditSelected
 		? [
@@ -75,19 +85,55 @@ export const EcoPay: React.FC = (): JSX.Element => {
 							{...register('paymentType', { required: 'Payment type is required' })}
 						/>
 					</FormControl>
+					<FormControl error={Boolean(errors?.coin)} required>
+						<Select
+							labelId="coin-label"
+							id="coin-select"
+							label="Coin"
+							menuItems={coins}
+							defaultValue=''
+							errorMessage={errors?.coin?.message}
+							{...register('coin', { required: 'Coin is required' })}
+						/>
+					</FormControl>
+					<FormControl>
+						<TextField
+							required
+							id="amount"
+							label="Amount"
+							type='text'
+							aria-required="true"
+							error={Boolean(errors?.amount)}
+							aria-invalid={Boolean(errors?.amount)}
+							helperText={errors?.amount?.message}
+							{...register('amount', { required: 'Amount is required' })}
+						/>
+						<FormHelperText sx={{ textAlign: 'right', color: 'var(--black-900)' }}>{availableBalanceText}</FormHelperText>
+					</FormControl>
 					{
 						(isWasteRecyclingSelected || isEcoProductSelected) &&
 					<>
-						<TextField
+						{shouldRequireBEP20WalletAddress && <TextField
 							required
-							id="receiver-address"
-							label="Receiver's wallet address"
+							id="receiver-bep20-address"
+							label="Receiver's BEP20 wallet address"
 							type='text'
 							aria-required="true"
-							error={Boolean(errors?.receiverAddress)}
-							aria-invalid={Boolean(errors?.receiverAddress)}
-							helperText={errors?.receiverAddress?.message}
-							{...register('receiverAddress', { required: 'Receiver\'s wallet address is required' })}
+							error={Boolean(errors?.receiverBEP20Address)}
+							aria-invalid={Boolean(errors?.receiverBEP20Address)}
+							helperText={errors?.receiverBEP20Address?.message}
+							{...register('receiverBEP20Address', { required: 'Receiver\'s BEP20 wallet address is required' })}
+						/>}
+						<TextField
+							required
+							id="receiver-eco-token-address"
+							label="Receiver's ECO wallet address"
+							type='text'
+							aria-required="true"
+							error={Boolean(errors?.receiverEcoTokenAddress)}
+							aria-invalid={Boolean(errors?.receiverEcoTokenAddress)}
+							helperText={errors?.receiverEcoTokenAddress?.message}
+							{...register('receiverEcoTokenAddress', { required: 'Receiver\'s EcoToken (ECO) wallet address is required' })}
 						/>
 						<FormControl error={Boolean(errors?.itemName)} required>
 							<Select
@@ -134,31 +180,6 @@ export const EcoPay: React.FC = (): JSX.Element => {
 							/>
 						</FormControl>
 					 }
-					<FormControl error={Boolean(errors?.coin)} required>
-						<Select
-							labelId="coin-label"
-							id="coin-select"
-							label="Coin"
-							menuItems={coins}
-							defaultValue=''
-							errorMessage={errors?.coin?.message}
-							{...register('coin', { required: 'Coin is required' })}
-						/>
-					</FormControl>
-					<FormControl>
-						<TextField
-							required
-							id="amount"
-							label="Amount"
-							type='text'
-							aria-required="true"
-							error={Boolean(errors?.amount)}
-							aria-invalid={Boolean(errors?.amount)}
-							helperText={errors?.amount?.message}
-							{...register('amount', { required: 'Amount is required' })}
-						/>
-						<FormHelperText sx={{ textAlign: 'right', color: 'var(--black-900)' }}>Available: 30 USDT</FormHelperText>
-					</FormControl>
 					<TextField
 						id="additional-note"
 						label="Additional note"

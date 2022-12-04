@@ -25,7 +25,7 @@ export const InternalLayout: React.FC<Props> = ({ children }): JSX.Element => {
 
 	return (
 		<>
-			<InternalTopNavigationBar/>
+			<InternalTopNavigationBar firstNameInitial={data?.firstName?.charAt(0) ?? ''}/>
 			<Box sx={{ width: '100vw' }}>
 				<InternalSideBarNavigation/>
 				<Box component="main" sx={{ flexGrow: 1, p: 3, width: '70%', marginLeft: '20%' }}>

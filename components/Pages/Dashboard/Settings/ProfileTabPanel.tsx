@@ -4,8 +4,14 @@ import * as React from 'react';
 type Props = {
 	currentTabPanelIndex: number;
 	index: number;
+	firstName: string;
+	lastName: string;
+	email: string;
+	phoneNumber: string;
 }
-export const ProfileTabPanel: React.FC<Props> = ({ currentTabPanelIndex, index }):JSX.Element => {
+export const ProfileTabPanel: React.FC<Props> = (
+	{ currentTabPanelIndex, index, firstName, lastName, email, phoneNumber }
+):JSX.Element => {
 
 	return (
 		<Box hidden={currentTabPanelIndex !== index} sx={{ marginTop: '2rem' }}>
@@ -13,7 +19,7 @@ export const ProfileTabPanel: React.FC<Props> = ({ currentTabPanelIndex, index }
 				<TextField
 					id="first-name"
 					label="First name"
-					defaultValue='Ayo'
+					defaultValue={firstName}
 					InputProps={{
 						readOnly: true,
 					}}
@@ -21,7 +27,7 @@ export const ProfileTabPanel: React.FC<Props> = ({ currentTabPanelIndex, index }
 				<TextField
 					id="last-name"
 					label="Last name"
-					defaultValue='Ayoade'
+					defaultValue={lastName}
 					InputProps={{
 						readOnly: true,
 					}}
@@ -29,7 +35,7 @@ export const ProfileTabPanel: React.FC<Props> = ({ currentTabPanelIndex, index }
 				<TextField
 					id="email"
 					label="Email"
-					defaultValue='ayoade@gmail.com'
+					defaultValue={email}
 					InputProps={{
 						readOnly: true,
 					}}
@@ -37,7 +43,7 @@ export const ProfileTabPanel: React.FC<Props> = ({ currentTabPanelIndex, index }
 				<TextField
 					id="phone-number"
 					label="Phone number"
-					defaultValue='+2349898765463'
+					defaultValue={phoneNumber}
 					InputProps={{
 						readOnly: true,
 					}}

@@ -20,7 +20,10 @@ const ElevationScroll: React.FC<Props> = ({ children }): JSX.Element => {
 	});
 };
 
-export const InternalTopNavigationBar: React.FC = (): JSX.Element => {
+type InternalNavProps = {
+	firstNameInitial: string;
+}
+export const InternalTopNavigationBar: React.FC<InternalNavProps> = ({ firstNameInitial }): JSX.Element => {
 
 	return <ElevationScroll>
 		<AppBar sx={{ zIndex: '5000' }}>
@@ -32,14 +35,14 @@ export const InternalTopNavigationBar: React.FC = (): JSX.Element => {
 					<Toolbar sx={{ width:'100%', justifyContent: 'flex-end', }} className='nav-links'>
 						<MuiLink className="nav-links__link--desktop" component='button'>
 							<Link href="/#how-it-works">
-								<Badge badgeContent={4} color="primary">
+								<Badge badgeContent={0} color="primary">
 									<NotificationsNone color="action" />
 								</Badge>
 							</Link>
 						</MuiLink>
 						<MuiLink className="nav-links__link--desktop" component='button'>
 							<Link href="/dashboard/settings">
-								<Avatar>J</Avatar>
+								<Avatar>{firstNameInitial}</Avatar>
 							</Link>
 						</MuiLink>
 					</Toolbar>

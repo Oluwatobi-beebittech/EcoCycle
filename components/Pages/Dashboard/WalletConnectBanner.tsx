@@ -51,7 +51,7 @@ export const WalletConnectBanner: React.FC<Props> = (
 				<OutlinedInput
 					sx={{
 						height: '1.5rem',
-						fontWeight: 'bold'
+						fontWeight: 'bold',
 					}}
 					value={isExternalWalletConnected ? walletAddress : ''}
 					size='small'

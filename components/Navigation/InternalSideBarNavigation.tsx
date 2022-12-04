@@ -1,7 +1,9 @@
-import { DashboardOutlined, LocalShippingOutlined, HistoryOutlined, BuildOutlined, Inventory2Outlined, WalletOutlined } from '@mui/icons-material';
+import { DashboardOutlined, LocalShippingOutlined, HistoryOutlined, BuildOutlined, Inventory2Outlined, WalletOutlined, Logout } from '@mui/icons-material';
 import { Badge, Box, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Toolbar, Typography } from '@mui/material';
 import { useRouter, NextRouter } from 'next/router';
 import * as React from 'react';
+
+import { removeAccessToken } from '@Utilities';
 
 export const InternalSideBarNavigation = () => {
 	const router: NextRouter = useRouter();
@@ -33,7 +35,7 @@ export const InternalSideBarNavigation = () => {
 								<LocalShippingOutlined />
 							</ListItemIcon>
 							<Badge badgeContent="Pending" color="warning">
-								<ListItemText primary='Schedule Pickup' />
+								<ListItemText primary='EcoPickup' />
 							</Badge>
 						</ListItemButton>
 					</ListItem>
@@ -73,6 +75,17 @@ export const InternalSideBarNavigation = () => {
 								<BuildOutlined />
 							</ListItemIcon>
 							<ListItemText primary='Settings' />
+						</ListItemButton>
+					</ListItem>
+					<ListItem disablePadding>
+						<ListItemButton onClick={() => {
+							removeAccessToken();
+							router.push('/login');
+						}}>
+							<ListItemIcon>
+								<Logout />
+							</ListItemIcon>
+							<ListItemText primary='Logout' />
 						</ListItemButton>
 					</ListItem>
 				</List>

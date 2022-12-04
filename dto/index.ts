@@ -5,3 +5,4 @@ export * from './LoginDto';
 export * from './SchedulePickupDto';
 export * from './ResetPasswordDto';
 export * from './UserDto';
+export * from './TokensDto';

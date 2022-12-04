@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { InternalTopNavigationBar, InternalSideBarNavigation, WalletConnectBanner } from '@Components';
 import { useGetConnectedWalletStatus } from '@Hooks';
-import { AppDispatch, RootState, UserState, getUserDetails } from '@Store';
+import { AppDispatch, RootState, UserState, getUserDetails, getEcoTokenBalance } from '@Store';
 
 type Props = {
     children: React.ReactElement;
@@ -18,6 +18,11 @@ export const InternalLayout: React.FC<Props> = ({ children }): JSX.Element => {
 	React.useEffect(() => {
 		dispatch(getUserDetails());
 	}, []);
+
+	React.useEffect(() => {
+		dispatch(getUserDetails());
+		if(isExternalWalletConnected) dispatch(getEcoTokenBalance(addresses[0]));
+	}, [ isExternalWalletConnected, addresses[0] ]);
 
 	return (
 		<>

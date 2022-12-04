@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 
 import { FormStatusAlert, LoadingPopup, OrganisedList, OrganisedListItems } from '@Components';
 import { useGetConnectedWalletStatus, useFormSubmit } from '@Hooks';
-import { RootState, UserState } from '@Store';
+import { RootState, UserState, TokensState } from '@Store';
 import { registerEcoCycleToken, ecoCycleTokenDetails } from '@Utilities';
 import BUSDIcon from 'public/busd_logo.png';
 import DAIIcon from 'public/dai_logo.png';
@@ -18,7 +18,9 @@ export const CoinsOrganisedList = () => {
 	const { isExternalWalletConnected } = useGetConnectedWalletStatus();
 	const { isLoading, hasSuccess, successMessage, hasError, errorMessage, update } = useFormSubmit();
 	const { data }: UserState = useSelector<RootState, UserState>(rootState => rootState.UserSlice);
+	const { data: tokensData }: TokensState = useSelector<RootState, TokensState>(rootState => rootState.TokensSlice);
 	const isLazerPayKeysPresent = Boolean(data?.lazerPayKey?.publicKey) && Boolean(data?.lazerPayKey?.secretKey);
+	const ecoTokenBalance = tokensData?.ECO?.tokenBalance as string;
 
 	const LinkWalletWithEcoTokenButton: React.ReactElement =  <Tooltip
 		title='Link EcoToken to External Wallet'>
@@ -50,7 +52,7 @@ export const CoinsOrganisedList = () => {
 	const listItems: Array<OrganisedListItems> = [
 		{
 			image: ECOIcon,
-			description: isExternalWalletConnected ? '0.00' : '__.__',
+			description: isExternalWalletConnected ? ecoTokenBalance : '__.__',
 			name: 'ECO',
 			itemEndComponent: LinkWalletWithEcoTokenButton
 		},

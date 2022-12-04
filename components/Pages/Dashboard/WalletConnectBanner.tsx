@@ -90,7 +90,7 @@ export const WalletConnectBanner: React.FC<Props> = (
 	{
 		!isExternalWalletConnected && <Alert severity="info">
 			<AlertTitle><b>Metamask external wallet not connected</b></AlertTitle>
-			Click on the button <AddLink sx={{ fontSize: '1.3rem', color: 'var(--green-500)'}}/> to connect to your Metamask wallet.
+			Click on the button <AddLink sx={{ fontSize: '1.3rem', color: 'var(--green-500)' }}/> to connect to your Metamask wallet.
 		</Alert>
 	}
 	{

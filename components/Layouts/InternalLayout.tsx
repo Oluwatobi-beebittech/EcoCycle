@@ -20,7 +20,6 @@ export const InternalLayout: React.FC<Props> = ({ children }): JSX.Element => {
 	}, []);
 
 	React.useEffect(() => {
-		dispatch(getUserDetails());
 		if(isExternalWalletConnected) dispatch(getEcoTokenBalance(addresses[0]));
 	}, [ isExternalWalletConnected, addresses[0] ]);
 

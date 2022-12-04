@@ -1,4 +1,5 @@
 export * from './Button';
+export * from './ComingSoon';
 export * from './DateTimePicker';
 export * from './FormStatusAlert';
 export * from './Link';

@@ -1,5 +1,5 @@
 import { DashboardOutlined, LocalShippingOutlined, HistoryOutlined, BuildOutlined, Inventory2Outlined, WalletOutlined } from '@mui/icons-material';
-import { Box, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Toolbar, Typography } from '@mui/material';
+import { Badge, Box, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Toolbar, Typography } from '@mui/material';
 import { useRouter, NextRouter } from 'next/router';
 import * as React from 'react';
 
@@ -32,7 +32,9 @@ export const InternalSideBarNavigation = () => {
 							<ListItemIcon>
 								<LocalShippingOutlined />
 							</ListItemIcon>
-							<ListItemText primary='Schedule Pickup' />
+							<Badge badgeContent="Pending" color="warning">
+								<ListItemText primary='Schedule Pickup' />
+							</Badge>
 						</ListItemButton>
 					</ListItem>
 					<ListItem disablePadding>
@@ -40,7 +42,9 @@ export const InternalSideBarNavigation = () => {
 							<ListItemIcon>
 								<HistoryOutlined />
 							</ListItemIcon>
-							<ListItemText primary='EcoHistory' />
+							<Badge badgeContent="Pending" color="warning">
+								<ListItemText primary='EcoHistory' />
+							</Badge>
 						</ListItemButton>
 					</ListItem>
 					<Typography variant='caption' sx={{ paddingLeft: '0.5rem' }}>COMMERCE</Typography>
@@ -57,7 +61,9 @@ export const InternalSideBarNavigation = () => {
 							<ListItemIcon>
 								<Inventory2Outlined />
 							</ListItemIcon>
-							<ListItemText primary='EcoProducts' />
+							<Badge badgeContent="Pending" color="warning">
+								<ListItemText primary='EcoProducts' />
+							</Badge>
 						</ListItemButton>
 					</ListItem>
 					<Typography variant='caption' sx={{ paddingLeft: '0.5rem' }}>ADMIN</Typography>

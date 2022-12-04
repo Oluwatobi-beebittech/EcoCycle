@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import { FormStatusAlert, LoadingPopup, OrganisedList, OrganisedListItems } from '@Components';
 import { useGetConnectedWalletStatus, useFormSubmit } from '@Hooks';
 import { RootState, UserState, TokensState } from '@Store';
-import { registerEcoCycleToken, ecoCycleTokenDetails } from '@Utilities';
+import { registerEcoCycleToken, ecoCycleTokenDetails, Coins } from '@Utilities';
 import BUSDIcon from 'public/busd_logo.png';
 import DAIIcon from 'public/dai_logo.png';
 import ECOIcon from 'public/ecotoken_logo.png';
@@ -20,7 +20,13 @@ export const CoinsOrganisedList = () => {
 	const { data }: UserState = useSelector<RootState, UserState>(rootState => rootState.UserSlice);
 	const { data: tokensData }: TokensState = useSelector<RootState, TokensState>(rootState => rootState.TokensSlice);
 	const isLazerPayKeysPresent = Boolean(data?.lazerPayKey?.publicKey) && Boolean(data?.lazerPayKey?.secretKey);
-	const ecoTokenBalance = tokensData?.ECO?.tokenBalance as string;
+
+	const ecoTokenBalance = tokensData?.ECO?.tokenBalance as string ?? '__.__';
+	const usdtTokenBalance = tokensData?.USDT?.tokenBalance as string ?? '__.__';
+	const usdcTokenBalance = tokensData?.USDC?.tokenBalance as string ?? '__.__';
+	const busdTokenBalance = tokensData?.BUSD?.tokenBalance as string ?? '__.__';
+	const daiTokenBalance = tokensData?.DAI?.tokenBalance as string ?? '__.__';
+
 
 	const LinkWalletWithEcoTokenButton: React.ReactElement =  <Tooltip
 		title='Link EcoToken to External Wallet'>
@@ -53,28 +59,28 @@ export const CoinsOrganisedList = () => {
 		{
 			image: ECOIcon,
 			description: isExternalWalletConnected ? ecoTokenBalance : '__.__',
-			name: 'ECO',
+			name: Coins.ECO,
 			itemEndComponent: LinkWalletWithEcoTokenButton
 		},
 		{
 			image: USDTIcon,
-			description: isLazerPayKeysPresent ? '30.00' : '__.__',
-			name: 'USDT'
+			description: isLazerPayKeysPresent ? usdtTokenBalance : '__.__',
+			name: Coins.USDT
 		},
 		{
 			image: USDCIcon,
-			description: isLazerPayKeysPresent ? '30.00' : '__.__',
-			name: 'USDC'
+			description: isLazerPayKeysPresent ? usdcTokenBalance : '__.__',
+			name: Coins.USDC
 		},
 		{
 			image: BUSDIcon,
-			description: isLazerPayKeysPresent ? '30.00' : '__.__',
-			name: 'BUSD'
+			description: isLazerPayKeysPresent ? busdTokenBalance : '__.__',
+			name: Coins.BUSD
 		},
 		{
 			image: DAIIcon,
-			description: isLazerPayKeysPresent ? '30.00' : '__.__',
-			name: 'DAI'
+			description: isLazerPayKeysPresent ? daiTokenBalance : '__.__',
+			name: Coins.DAI
 		},
 	];
 
@@ -95,5 +101,4 @@ export const CoinsOrganisedList = () => {
 			<LoadingPopup isOpen={isLoading}/>
 		</>
 	);
-
 };

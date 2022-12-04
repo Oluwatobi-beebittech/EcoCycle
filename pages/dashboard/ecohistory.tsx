@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { EcoHistory as History, InternalLayoutWrapper } from '@Components';
+import { EcoHistory as History, ComingSoon, InternalLayoutWrapper } from '@Components';
 import { useVerifyAuth } from '@Hooks';
 export default function EcoHistory() {
 	const [ isVerifying ] = useVerifyAuth();
@@ -8,7 +8,10 @@ export default function EcoHistory() {
 
 	return (
 		<>
-			<History/>
+			<ComingSoon
+				featureName="transaction history view"
+				shortDescription="With transaction history, you can view previous transactions and sort them by types."
+			/>
 		</>
 	);
 }

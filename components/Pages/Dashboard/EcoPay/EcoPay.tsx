@@ -1,5 +1,5 @@
 import {  CreditScore } from '@mui/icons-material';
-import { Box, FormControl, FormHelperText, InputAdornment, TextField, Typography } from '@mui/material';
+import { Alert, AlertTitle, Box, FormControl, FormHelperText, InputAdornment, TextField, Typography } from '@mui/material';
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
@@ -73,6 +73,10 @@ export const EcoPay: React.FC = (): JSX.Element => {
 	return (
 		<Box sx={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
 			<Typography variant='h3'>EcoPay</Typography>
+			<Alert severity="info">
+				<AlertTitle><b>Lazerpay payment</b></AlertTitle>
+				Payments may fail because Lazerpay requires KYC to be completed before withdrawals can occur.
+			</Alert>
 			<Box sx={{ display: 'flex', flexDirection: 'column', gap: '1rem', justifyContent: 'center' }}>
 				<FormControl sx={{ width: '50%', marginX: 'auto', gap: '2rem' }}>
 					<FormControl error={Boolean(errors?.paymentType)} required>

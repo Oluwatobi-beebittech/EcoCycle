@@ -13,6 +13,7 @@ export const InternalLayout: React.FC<Props> = ({ children }): JSX.Element => {
 	const { isExternalWalletConnected, addresses } = useGetConnectedWalletStatus();
 	const { isLoading, data }: UserState = useSelector<RootState, UserState>(rootState => rootState.UserSlice);
 	const dispatch = useDispatch<AppDispatch>();
+	const isLazerPayKeysPresent = Boolean(data?.lazerPayKey?.publicKey) && Boolean(data?.lazerPayKey?.secretKey);
 
 	React.useEffect(() => {
 		dispatch(getUserDetails());
@@ -33,6 +34,7 @@ export const InternalLayout: React.FC<Props> = ({ children }): JSX.Element => {
 									isExternalWalletConnected={isExternalWalletConnected}
 									fullName={`${data.firstName} ${data.lastName}`}
 									walletAddress={addresses[0]}
+									isLazerPayKeysPresent={isLazerPayKeysPresent}
 								/>
 						}
 						{children}

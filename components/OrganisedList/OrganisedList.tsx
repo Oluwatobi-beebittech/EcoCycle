@@ -27,12 +27,13 @@ export const OrganisedList: React.FC<Props> = ({ listTitle, listItems }): JSX.El
 				listItems.map(({ image, name, description, itemEndComponent }) =>
 					<ListItem key={name}>
 						<ListItemAvatar>
-							<Avatar>
-								<NextImage
-									src={image}
-									alt={name}
-								/>
-							</Avatar>
+							<NextImage
+								src={image}
+								alt={name}
+								width='40'
+								height='40'
+							/>
+
 						</ListItemAvatar>
 						<ListItemText primaryTypographyProps={{ sx: { fontWeight: 'bold' } }} primary={name} secondary={description} />
 						{!!itemEndComponent && itemEndComponent}

@@ -1,11 +1,12 @@
 import { ContentCopyOutlined, Brightness1, Brightness1Outlined, AddLink, InfoOutlined } from '@mui/icons-material';
-import { Box, IconButton, OutlinedInput, InputAdornment,  Tooltip, Typography, ClickAwayListener } from '@mui/material';
+import { Alert, Box, IconButton, Link, OutlinedInput, InputAdornment,  Tooltip, Typography, ClickAwayListener, AlertTitle } from '@mui/material';
 import NextImage from 'next/image';
+import { useRouter } from 'next/router';
 import * as React from 'react';
 
 import { FormStatusAlert,LoadingPopup, Modal, WalletConnectionButton } from '@Components';
 import { useCopyToClipboard, useFormSubmit } from '@Hooks';
-import { connectExternalWallet, switchToDeployedChainNetwork, chainDetails } from '@Utilities';
+import { connectExternalWallet, switchToDeployedChainNetwork, chainDetails, WebRoute } from '@Utilities';
 import MetamaskIcon from 'public/metamask.png';
 
 import { WalletButtonItems } from './WalletButtonItems';
@@ -13,14 +14,16 @@ import { WalletButtonItems } from './WalletButtonItems';
 type Props = {
     fullName: string;
     isExternalWalletConnected: boolean;
+	isLazerPayKeysPresent: boolean;
     walletAddress?: string | undefined;
 }
 export const WalletConnectBanner: React.FC<Props> = (
-	{ fullName, walletAddress, isExternalWalletConnected }
+	{ fullName, walletAddress, isExternalWalletConnected, isLazerPayKeysPresent }
 ): JSX.Element => {
 	const { isItemCopied, clearIsItemCopied, copyItem } = useCopyToClipboard();
 	const [ isModalOpen, setIsModalOpen ] = React.useState<boolean>(false);
 	const { isLoading, hasSuccess, successMessage, hasError, errorMessage, update } = useFormSubmit();
+	const router = useRouter();
 
 	return <><Box sx={{ width: '100%' }}>
 		<Typography variant='subtitle1'>Welcome {fullName}</Typography>
@@ -84,6 +87,31 @@ export const WalletConnectBanner: React.FC<Props> = (
 
 		</Box>
 	</Box>
+	{
+		!isExternalWalletConnected && <Alert severity="info">
+			<AlertTitle><b>Metamask external wallet not connected</b></AlertTitle>
+			Click on the button <AddLink sx={{ fontSize: '1.3rem', color: 'var(--green-500)'}}/> to connect to your Metamask wallet.
+		</Alert>
+	}
+	{
+		!isLazerPayKeysPresent && <Alert severity="info">
+			<AlertTitle><b>Lazerpay keys not found</b></AlertTitle>
+			Lazerpay testnet public and secret keys were not detected on your account. To rectify,
+			<ol>
+				<li>Visit Lazerpay at <a href="https://lazerpay.finance/">https://lazerpay.finance/</a>.</li>
+				<li>Go to the developer menu section and copy the testnet public and secret keys. </li>
+				<li>Add the keys to the API keys tab of your dashboard&apos;s EcoCycle settings.
+					<Link component='button' underline='hover' onClick={() => router.push({
+						pathname: WebRoute.DASHBOARD_SETTINGS,
+						query: { tabIndex: 1 }
+					})}>
+						 &nbsp;Click here
+					</Link> to navigate to API keys tab.
+				</li>
+			</ol>
+
+		</Alert>
+	}
 	<Modal onClose={() => setIsModalOpen(false)} isOpen={isModalOpen} title='Connect Wallet'>
 		<Box sx={{ display: 'flex', flexDirection: 'column',justifyContent: 'center', gap: 'var(--gap)' }}>
 			{WalletButtonItems.map(

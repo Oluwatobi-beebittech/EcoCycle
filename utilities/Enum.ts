@@ -33,5 +33,6 @@ export enum WebRoute {
   LEARN_ECO_DISCOUNT = '/learn-more#eco-discount',
   LEARN_ECO_TAX_CREDIT = '/learn-more#eco-tax-credit',
   LEARN_ECO_REDEEM = '/learn-more#eco-redeem',
-  LEARN_COP_27 = '/learn-more#cop27'
+  LEARN_COP_27 = '/learn-more#cop27',
+  DASHBOARD_SETTINGS='/dashboard/settings'
 }

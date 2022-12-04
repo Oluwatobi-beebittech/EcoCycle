@@ -1,5 +1,5 @@
 export const getAPIBaseURL = (): string => process.env.NEXT_PUBLIC_API_BASE_URL as string;
-
+export const isProd = (): boolean => JSON.parse(process.env.NEXT_PUBLIC_IS_PROD ?? 'true') as boolean;
 export const getChainBlockExplorerUrl = ():string => process.env.NEXT_PUBLIC_CHAIN_BLOCK_EXPLORER_URL as string;
 export const getChainCurrencyDecimals = ():number => Number(process.env.NEXT_PUBLIC_CHAIN_CURRENCY_DECIMALS);
 export const getChainCurrencyName = ():string => process.env.NEXT_PUBLIC_CHAIN_CURRENCY_NAME as string;

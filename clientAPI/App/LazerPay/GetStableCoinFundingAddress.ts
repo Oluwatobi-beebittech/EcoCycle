@@ -5,7 +5,7 @@ import { getAPIBaseURL } from 'Environment';
 import { getAuthHeader } from '../Auth';
 
 export const GetStableCoinFundingAddress = async (coin: Coins) => {
-	const route = '/crypto/funding/address';
+	const route = '/tokens/address';
 
 	return await API.GET<any, {address: string}>(
 		getAPIBaseURL(), route, { coin }, {

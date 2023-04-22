@@ -1,5 +1,12 @@
 $navLinkMargin: 3.3125rem;
 
+.nav-header {
+    &__title{
+        text-decoration: none;
+        color: #000;
+    }
+}
+
 .nav-links {
     &__link{
         &:not(:first-child):not(:last-child){

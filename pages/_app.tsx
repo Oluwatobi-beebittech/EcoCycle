@@ -8,8 +8,7 @@ import type { AppProps } from 'next/app';
 
 import '../styles/main.scss';
 
-export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
-	// eslint-disable-next-line no-unused-vars
+export type NextPageWithLayout<Props = {}, InitialProps = Props> = NextPage<Props, InitialProps> & {
 	getLayout?: (page: React.ReactElement) => React.ReactNode
   }
 

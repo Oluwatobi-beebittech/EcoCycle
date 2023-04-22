@@ -2,8 +2,8 @@ import { AppBar, Typography } from '@mui/material';
 import Container from '@mui/material/Container';
 import Toolbar from '@mui/material/Toolbar';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
+import Link from 'next/link';
 import { useRouter, NextRouter } from 'next/router';
-import Link from 'next/link'
 import * as React from 'react';
 
 import { Button } from '@Components';
@@ -31,12 +31,12 @@ export const PublicNavigationBar: React.FC = (): JSX.Element => {
 		<AppBar>
 			<Container fixed>
 				<Toolbar>
-				<Link href='/' className="nav-header__title">
-					<Typography variant="h2">
-						
+					<Link href='/' className="nav-header__title">
+						<Typography variant="h2">
+
                         EcoCycle
-						
-					</Typography>
+
+						</Typography>
 					</Link>
 					<Toolbar sx={{ width:'100%', justifyContent: 'flex-end', }} className='nav-links'>
 						<MuiLink className="nav-links__link" component='button' onClick={() => router.push('/#how-it-works')}>
